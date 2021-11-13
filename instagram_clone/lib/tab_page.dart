@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/home_page.dart';
 
 class TabPage extends StatefulWidget {
   @override
@@ -9,9 +10,9 @@ class _TabPageState extends State<TabPage> {
   int _selectedIndex = 0;
 
   List _pages = [
-    Text('Page1'),
-    Text('Page2'),
-    Text('Page3'),
+    HomePage(),
+    Text('앙앙2'),
+    Text('앙앙3'),
   ];
 
   @override
@@ -19,6 +20,7 @@ class _TabPageState extends State<TabPage> {
     return Scaffold(
       body: Center(child: _pages[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
+        fixedColor: Colors.black,
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
         items: <BottomNavigationBarItem>[
@@ -27,11 +29,12 @@ class _TabPageState extends State<TabPage> {
               icon: Icon(Icons.search), title: Text('Search')),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_circle), title: Text('Account')),
-        ],),
+        ],
+      ),
     );
   }
 
-  void _onItemTapped(int index){
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });

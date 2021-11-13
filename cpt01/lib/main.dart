@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'cupertino_page.dart';
 
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         // home: HelloPage('hello page')
-        home: CupertinoPage();
+        home: CupertinoPage()
     );
   }
 }

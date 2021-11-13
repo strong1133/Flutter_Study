@@ -51,27 +51,32 @@ class HomePage extends StatelessWidget {
                         Padding(padding: EdgeInsets.all(8.0)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-
                           children: <Widget>[
                             SizedBox(
                               width: 70.0,
                               height: 70.0,
                               child: Image.network(
-                                  'https://cdn.pixabay.com/photo/2017/02/05/17/40/saint-peters-basilica-2040718__480.jpg', fit: BoxFit.cover,),
+                                'https://cdn.pixabay.com/photo/2017/02/05/17/40/saint-peters-basilica-2040718__480.jpg',
+                                fit: BoxFit.cover,
+                              ),
                             ),
                             Padding(padding: EdgeInsets.all(1.0)),
                             SizedBox(
                               width: 70.0,
                               height: 70.0,
                               child: Image.network(
-                                'https://cdn.pixabay.com/photo/2017/02/05/17/40/saint-peters-basilica-2040718__480.jpg', fit: BoxFit.cover,),
+                                'https://cdn.pixabay.com/photo/2017/02/05/17/40/saint-peters-basilica-2040718__480.jpg',
+                                fit: BoxFit.cover,
+                              ),
                             ),
                             Padding(padding: EdgeInsets.all(1.0)),
                             SizedBox(
                               width: 70.0,
                               height: 70.0,
                               child: Image.network(
-                                'https://cdn.pixabay.com/photo/2017/02/05/17/40/saint-peters-basilica-2040718__480.jpg', fit: BoxFit.cover,),
+                                'https://cdn.pixabay.com/photo/2017/02/05/17/40/saint-peters-basilica-2040718__480.jpg',
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ],
                         ),

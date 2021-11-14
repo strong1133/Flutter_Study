@@ -21,3 +21,4 @@ doc/api/
 *.js.map
 
 google-services.json
+instagram_clone/android/app/google-services.json

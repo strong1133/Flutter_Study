@@ -11,7 +11,7 @@ void main() {
   //a = 7; //에러 발생!
   const b = 2.0;
 
-  const String name3;
-  name3 = "정석무지개";
-  print(name3);
+  // const String name3;
+  // name3 = "정석무지개"; //에러 발생!
+  // print(name3);
 }

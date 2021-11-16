@@ -4,6 +4,14 @@ class Person {
   String? _name;
   int? _age;
 
+  String? get name => this._name;
+
+  set name(String? value) => this._name = value;
+
+  get age => this._age;
+
+  set age(value) => this._age = value;
+
   // 기본 생성자
   Person() {}
 
@@ -21,4 +29,6 @@ class Person {
 void main() {
   Person person = new Person.gen("정석진", 12);
   print(person.showInfo(person));
+  person.name = "홍슬기";
+  print(person.name);
 }

@@ -1,4 +1,4 @@
-// 기본 자료형 (dynamic) - 2021.11.15
+// 기본 자료형 (Const, final) - 2021.11.15
 
 void main() {
   final String name = "정석진";
@@ -14,4 +14,6 @@ void main() {
   // const String name3;
   // name3 = "정석무지개"; //에러 발생!
   // print(name3);
+
+  // const var c = 22; => 에러 발생!
 }

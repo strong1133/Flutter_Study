@@ -2,6 +2,8 @@
 
 void main() {
   var items = [1, 2, 3];
+
+  // spread 연산자
   var items2 = [...items, 4, 5];
   print(items2);
 }

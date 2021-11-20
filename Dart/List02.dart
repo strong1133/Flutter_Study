@@ -5,5 +5,8 @@ void main() {
 
   // spread 연산자
   var items2 = [...items, 4, 5];
-  print(items2);
+  print(items);
+
+  items.remove(items[0]);
+  print(items);
 }

@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'create_page.dart';
 
 class SearchPage extends StatefulWidget {
+  FirebaseUser user;
+  SearchPage(this.user);
+
   @override
   _SearchPageState createState() => _SearchPageState();
 }
@@ -15,8 +19,8 @@ class _SearchPageState extends State<SearchPage> {
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CreatePage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => CreatePage(widget.user)));
         },
         child: Icon(Icons.create),
         backgroundColor: Colors.blue,

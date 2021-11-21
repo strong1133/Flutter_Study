@@ -16,8 +16,7 @@ class _SearchPageState extends State<SearchPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-            context, MaterialPageRoute(builder: (context)=> CreatePage();)
-          );
+              context, MaterialPageRoute(builder: (context) => CreatePage()));
         },
         child: Icon(Icons.create),
         backgroundColor: Colors.blue,

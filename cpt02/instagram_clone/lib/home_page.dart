@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
+  final FirebaseUser user;
+  HomePage(this.user);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -46,18 +50,17 @@ class _HomePageState extends State<HomePage> {
                           width: 80.0,
                           height: 80.0,
                           child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                'https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fca143133-349a-4075-a68b-60ee33b318c9%2FSJ_Main.png?table=block&id=fa0eb946-388d-40b5-9295-9e29d1eca65f&spaceId=89c8c53a-d004-445f-8b96-e4a9cd8ffa7c&width=250&userId=582806da-b4e3-4c8c-8573-a1b75f56bbb5&cache=v2'),
+                            backgroundImage: NetworkImage(widget.user.photoUrl),
                           ),
                         ),
                         Padding(padding: EdgeInsets.all(4.0)),
                         Text(
-                          'strong1133@naver.com',
+                          widget.user.email,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Padding(padding: EdgeInsets.all(8.0)),
                         Text(
-                          '정석진',
+                          widget.user.displayName,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Padding(padding: EdgeInsets.all(4.0)),

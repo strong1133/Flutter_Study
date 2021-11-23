@@ -37,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<FirebaseUser> _handleSignIn() async {
     GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    print(googleUser.email);
     GoogleSignInAuthentication googleAuth = await googleUser.authentication;
     FirebaseUser user = (await _auth.signInWithCredential(
             GoogleAuthProvider.getCredential(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_class/grade_page.dart';
 import 'package:flutter_class/my_card.dart';
 import 'my_home_page.dart';
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '코딩쉐프 카드만들기',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: MyCard(),
+      home: Grade(),
     );
   }
 }

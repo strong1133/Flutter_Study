@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: '코딩쉐프 카드만들기',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: Grade(),

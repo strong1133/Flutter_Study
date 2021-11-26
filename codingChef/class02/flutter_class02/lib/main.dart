@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHome extends StatelessWidget {
+  bool flag = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +55,24 @@ class MyHome extends StatelessWidget {
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/sj_main.png'),
               ),
+              otherAccountsPictures: <Widget>[
+                CircleAvatar(
+                  backgroundImage: AssetImage('assets/truper.png'),
+                ),
+                CircleAvatar(
+                  backgroundImage: AssetImage('assets/baider.png'),
+                ),
+              ],
               accountName: Text("정석진"),
               accountEmail: Text("strong3879@gmail.com"),
               onDetailsPressed: () {
-                print("펼쳐졌다!");
+                if (flag) {
+                  print("펼쳐졌다!");
+                  flag = false;
+                  return;
+                }
+                print("접혀졌다!");
+                flag = true;
               },
               decoration: BoxDecoration(
                 color: Colors.red[400],
@@ -65,7 +80,40 @@ class MyHome extends StatelessWidget {
                     bottomLeft: Radius.circular(15.0),
                     bottomRight: Radius.circular(15.0)),
               ),
-            )
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.grey[850],
+              ),
+              title: Text('Home'),
+              onTap: () {
+                print('Home Button 눌림!');
+              },
+              trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.settings,
+                color: Colors.grey[850],
+              ),
+              title: Text('Setting'),
+              onTap: () {
+                print('Setting 눌림!');
+              },
+              trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.question_answer,
+                color: Colors.grey[850],
+              ),
+              title: Text('Q&A'),
+              onTap: () {
+                print('Q&A 눌림!');
+              },
+              trailing: Icon(Icons.add),
+            ),
           ],
         ),
       ),

@@ -24,12 +24,12 @@ class MyHome extends StatelessWidget {
         elevation: 0.0,
 
         //AppBar 왼쪽에 버튼이 생김
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {
-            print("Menu Button is Clicked");
-          },
-        ),
+        // leading: IconButton(
+        //   icon: Icon(Icons.menu),
+        //   onPressed: () {
+        //     print("Menu Button is Clicked");
+        //   },
+        // ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.shopping_cart),
@@ -44,6 +44,30 @@ class MyHome extends StatelessWidget {
             },
           ),
         ],
+      ),
+      // drawer 메뉴를 추가하면 자동으로 왼쪽에 메뉴 버튼이 생김.
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('assets/sj_main.png'),
+              ),
+              accountName: Text("정석진"),
+              accountEmail: Text("strong3879@gmail.com"),
+              onDetailsPressed: () {
+                print("펼쳐졌다!");
+              },
+              decoration: BoxDecoration(
+                color: Colors.red[400],
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(15.0),
+                    bottomRight: Radius.circular(15.0)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

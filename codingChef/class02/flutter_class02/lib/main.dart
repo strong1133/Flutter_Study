@@ -22,7 +22,7 @@ class MyHome extends StatelessWidget {
       appBar: _buildAppBar(),
       // drawer 메뉴를 추가하면 자동으로 왼쪽에 메뉴 버튼이 생김.
       drawer: _buildDrawer(flag),
-      body: _buildBody(context),
+      body: _buildBody02(context),
     );
   }
 
@@ -130,6 +130,7 @@ class MyHome extends StatelessWidget {
     );
   }
 
+  // Snack Bar with Builder
   Widget _buildBody(context) {
     return Builder(
       builder: (BuildContext ctx) {
@@ -146,6 +147,37 @@ class MyHome extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  // Snack Bar without Builder
+  Widget _buildBody02(context) {
+    return MySnackBar();
+  }
+}
+
+class MySnackBar extends StatelessWidget {
+  const MySnackBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(
+        child: Text('Show Me'),
+        onPressed: () {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Hello',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: Colors.teal,
+              duration: Duration(microseconds: 1000),
+            ),
+          );
+        },
+      ),
     );
   }
 }

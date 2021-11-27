@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +23,16 @@ class MyHome extends StatelessWidget {
       appBar: _buildAppBar(),
       // drawer 메뉴를 추가하면 자동으로 왼쪽에 메뉴 버튼이 생김.
       drawer: _buildDrawer(flag),
-      body: _buildBody02(context),
+      // body: _buildBody02(context),
+      body: Center(
+        child: FlatButton(
+          onPressed: () {
+            flutterToast();
+          },
+          child: Text('Toast'),
+          color: Colors.blue,
+        ),
+      ),
     );
   }
 
@@ -180,4 +190,15 @@ class MySnackBar extends StatelessWidget {
       ),
     );
   }
+}
+
+// Toast 메세지
+void flutterToast() {
+  Fluttertoast.showToast(
+      msg: 'Flutter',
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.redAccent,
+      fontSize: 20.0,
+      textColor: Colors.white,
+      toastLength: Toast.LENGTH_SHORT);
 }

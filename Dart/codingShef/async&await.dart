@@ -4,9 +4,9 @@ void main() {
   showData();
 }
 
-void showData() {
+void showData() async {
   startTask();
-  String account = accessData();
+  String account = await accessData();
   fetchData(account);
 }
 
@@ -15,11 +15,12 @@ void startTask() {
   print(info1);
 }
 
-String accessData() {
-  String account;
+Future<String> accessData() async {
+  String account = '';
   Duration time = Duration(seconds: 2);
   // sleep(time);
-  Future.delayed(time, () {
+
+  await Future.delayed(time, () {
     account = '1억 2천';
     print(account);
   });

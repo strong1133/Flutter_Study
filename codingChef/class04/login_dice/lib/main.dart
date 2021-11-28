@@ -36,78 +36,85 @@ class _LogInState extends State<LogIn> {
         ],
       ),
       body: Builder(builder: (context) {
-        return SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Padding(padding: EdgeInsets.only(top: 50.0)),
-              Center(
-                child: Image(
-                  image: AssetImage('image/chef.gif'),
-                  width: 170.0,
-                  height: 190.0,
-                ),
-              ),
-              Form(
-                child: Theme(
-                  data: ThemeData(
-                      primaryColor: Colors.teal,
-                      inputDecorationTheme: InputDecorationTheme(
-                          labelStyle:
-                              TextStyle(color: Colors.teal, fontSize: 15.0))),
-                  child: Container(
-                    padding: EdgeInsets.all(40.0),
-                    child: Column(
-                      children: <Widget>[
-                        TextField(
-                          controller: controller,
-                          decoration: InputDecoration(labelText: 'Enter dice'),
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                        TextField(
-                          controller: controller2,
-                          decoration:
-                              InputDecoration(labelText: 'Enter password'),
-                          keyboardType: TextInputType.text,
-                          obscureText: true,
-                        ),
-                        SizedBox(
-                          height: 40.0,
-                        ),
-                        ButtonTheme(
-                            minWidth: 100.0,
-                            height: 50.0,
-                            child: RaisedButton(
-                              onPressed: () {
-                                if (controller.text == 'dice' &&
-                                    controller2.text == '1234') {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              Dice()));
-                                } else if (controller.text == 'dice' &&
-                                    controller2.text != '1234') {
-                                  showSnackBar2(context);
-                                } else if (controller.text != 'dice' &&
-                                    controller2.text == '1234') {
-                                  showSnackBar3(context);
-                                } else {
-                                  showSnackBar(context);
-                                }
-                              },
-                              color: Colors.orangeAccent,
-                              child: Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                                size: 35.0,
-                              ),
-                            ))
-                      ],
-                    ),
+        return GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Padding(padding: EdgeInsets.only(top: 50.0)),
+                Center(
+                  child: Image(
+                    image: AssetImage('image/chef.gif'),
+                    width: 170.0,
+                    height: 190.0,
                   ),
                 ),
-              )
-            ],
+                Form(
+                  child: Theme(
+                    data: ThemeData(
+                        primaryColor: Colors.teal,
+                        inputDecorationTheme: InputDecorationTheme(
+                            labelStyle:
+                                TextStyle(color: Colors.teal, fontSize: 15.0))),
+                    child: Container(
+                      padding: EdgeInsets.all(40.0),
+                      child: Column(
+                        children: <Widget>[
+                          TextField(
+                            autofocus: true,
+                            controller: controller,
+                            decoration:
+                                InputDecoration(labelText: 'Enter dice'),
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          TextField(
+                            controller: controller2,
+                            decoration:
+                                InputDecoration(labelText: 'Enter password'),
+                            keyboardType: TextInputType.text,
+                            obscureText: true,
+                          ),
+                          SizedBox(
+                            height: 40.0,
+                          ),
+                          ButtonTheme(
+                              minWidth: 100.0,
+                              height: 50.0,
+                              child: RaisedButton(
+                                onPressed: () {
+                                  if (controller.text == 'dice' &&
+                                      controller2.text == '1234') {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                Dice()));
+                                  } else if (controller.text == 'dice' &&
+                                      controller2.text != '1234') {
+                                    showSnackBar2(context);
+                                  } else if (controller.text != 'dice' &&
+                                      controller2.text == '1234') {
+                                    showSnackBar3(context);
+                                  } else {
+                                    showSnackBar(context);
+                                  }
+                                },
+                                color: Colors.orangeAccent,
+                                child: Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size: 35.0,
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         );
       }),

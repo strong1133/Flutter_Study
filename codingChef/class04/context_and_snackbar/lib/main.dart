@@ -81,7 +81,7 @@ void showSnackBar(BuildContext context, String loc) {
   Scaffold.of(context).showSnackBar(new SnackBar(
     backgroundColor: Colors.blue,
     content: Builder(builder: (context) {
-      print(context.toString());
+      print(context.owner);
       return Text('Snack Bar on $loc');
     }),
     duration: Duration(seconds: 1),

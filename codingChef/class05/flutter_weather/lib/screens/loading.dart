@@ -1,8 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:flutter_weather/data/my_location.dart';
+import 'package:flutter_weather/screens/weather.dart';
 import 'package:http/http.dart' as http;
+
+const apiKey = 'd6322d621d3aad429abd8f86fc95ec49';
 
 class Loading extends StatefulWidget {
   @override
@@ -10,37 +12,46 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  double? latitude2;
+  double? longtitude;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _getLocation();
-    _fetchData();
   }
 
   void _getLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      print('position: $position');
-    } catch (e) {
-      print('에러!');
-    }
+    MyLocation myLocation = MyLocation();
+    await myLocation.getMyCurLocation();
+    latitude2 = myLocation.latitude2;
+    longtitude = myLocation.longtitude;
+    print(myLocation.latitude2);
+    _fetchData();
   }
 
   void _fetchData() async {
     final queryParameters = {
-      'q': 'London',
-      'appid': 'b1b15e88fa797225412429c1c50c122a1',
+      'lat': '$latitude2',
+      'lon': '$longtitude',
+      'appid': apiKey,
+      'units': 'metric'
     };
-    const baseUrl = 'samples.openweathermap.org';
+    const baseUrl = 'api.openweathermap.org';
     final uri = Uri.https(baseUrl, '/data/2.5/weather', queryParameters);
+    print(uri);
+
     final response = await http.get(uri);
-    String jsonData = response.body;
-    var weather = jsonDecode(jsonData)['weather'][0]['description'];
-    var wind = jsonDecode(jsonData)['wind']['speed'];
-    var id = jsonDecode(jsonData)['id'];
-    print('$weather, $wind, $id');
+    if (response.statusCode == 200) {
+      String jsonData = response.body;
+
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return Weather(jsonData);
+      }));
+    } else {
+      print('ERROR!!');
+    }
   }
 
   @override

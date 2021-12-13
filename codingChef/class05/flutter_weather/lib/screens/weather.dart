@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_weather/model/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,8 +15,14 @@ class Weather extends StatefulWidget {
 }
 
 class _WeatherState extends State<Weather> {
+  Model model = Model();
+  Widget icon = SvgPicture.asset(
+    'svg/climacon-cloud_lightning.svg',
+    color: Colors.black,
+  );
   String? cityName;
   int? temp;
+  String? des;
   var date = DateTime.now();
 
   @override
@@ -32,6 +38,11 @@ class _WeatherState extends State<Weather> {
     double temp2 = jsonDecode(weatherData)['main']['temp'];
     temp = temp2.toInt();
 
+    int condition = jsonDecode(weatherData)['weather'][0]['id'];
+    icon = model.getWeatherIcon(condition);
+
+    des = jsonDecode(weatherData)['weather'][0]['description'];
+    print(jsonDecode(weatherData)['weather']);
     var wind = jsonDecode(weatherData)['wind']['speed'];
     var id = jsonDecode(weatherData)['id'];
 
@@ -92,7 +103,7 @@ class _WeatherState extends State<Weather> {
                               height: 150.0,
                             ),
                             Text(
-                              'Seoul',
+                              '$cityName',
                               style: TextStyle(
                                   fontSize: 35.0,
                                   fontWeight: FontWeight.bold,
@@ -129,7 +140,7 @@ class _WeatherState extends State<Weather> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '18\u2103',
+                              '$temp\u2103',
                               style: TextStyle(
                                   fontSize: 75.0,
                                   fontWeight: FontWeight.w300,
@@ -137,11 +148,11 @@ class _WeatherState extends State<Weather> {
                             ),
                             Row(
                               children: [
-                                SvgPicture.asset('svg/climacon-sun.svg'),
+                                icon,
                                 SizedBox(
                                   width: 10.0,
                                 ),
-                                Text('Clear Sky',
+                                Text('$des',
                                     style: TextStyle(
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.bold,
@@ -235,6 +246,9 @@ class _WeatherState extends State<Weather> {
                         ],
                       )
                     ],
+                  ),
+                  SizedBox(
+                    height: 60.0,
                   )
                 ],
               ),

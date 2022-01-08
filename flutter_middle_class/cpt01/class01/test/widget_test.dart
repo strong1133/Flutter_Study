@@ -5,26 +5,24 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:class01/model/AirResult.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:class01/main.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  test('http 통신 테스트', () async {
+    var base = "api.airvisual.com";
+    var param = {'key': '7a2e226e-a693-4923-97e5-45de42255e53'};
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    final uri = Uri.https(base, '/v2/nearest_city', param);
+    var res = await http.get(uri);
+    // print(res.body);
+    AirResult airResult = AirResult.fromJson(json.decode(res.body));
+    print(airResult);
+    expect(airResult.status, 'success');
   });
 }

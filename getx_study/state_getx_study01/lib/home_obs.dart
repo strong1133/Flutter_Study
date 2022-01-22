@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:state_getx_study01/controller/counterController.dart';
 
-class Home extends StatelessWidget {
+class Home_obs extends StatelessWidget {
   CounterController controller = Get.put(CounterController());
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,7 @@ class Home extends StatelessWidget {
             SizedBox(
               height: 10.0,
             ),
-            GetBuilder<CounterController>(builder: (controller) {
-              return Text('${controller.count}');
-            }),
+            Obx(() => Text('${controller.count}')),
             SizedBox(
               height: 10.0,
             ),

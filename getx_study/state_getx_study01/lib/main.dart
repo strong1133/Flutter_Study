@@ -1,7 +1,9 @@
+import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:state_getx_study01/controller/counterController.dart';
 import 'package:state_getx_study01/home_obs.dart';
+import 'model/event.dart';
 
 import 'home.dart';
 
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'GetX And Calendar',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.amber[200]),
       // home: Home(),

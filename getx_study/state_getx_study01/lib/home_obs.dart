@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:state_getx_study01/controller/counterController.dart';
 
-class Home_obs extends StatelessWidget {
+import 'package:state_getx_study01/widgets/create_calendar.dart';
+
+class Home_obs extends StatefulWidget {
+  @override
+  State<Home_obs> createState() => _Home_obsState();
+}
+
+class _Home_obsState extends State<Home_obs> {
   CounterController controller = Get.put(CounterController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +42,12 @@ class Home_obs extends StatelessWidget {
               },
               child: Text("Increase"),
             ),
+            Divider(
+              thickness: 2.0,
+              height: 2.0,
+              color: Colors.black,
+            ),
+            Calendar()
           ],
         ),
       ),

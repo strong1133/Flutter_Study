@@ -49,8 +49,6 @@ class _Home_obsState extends State<Home_obs> {
                 color: Colors.black,
               ),
               Container(
-                width: 500,
-                height: 700,
                 child: const FatosCalender(),
               )
             ],

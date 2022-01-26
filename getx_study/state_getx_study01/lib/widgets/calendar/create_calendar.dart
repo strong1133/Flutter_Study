@@ -21,8 +21,7 @@ class _CalendarState extends State<Calendar> {
       controller: EventController(),
       child: MediaQuery(
         data: MediaQuery.of(context).copyWith(
-          size: Size(MediaQuery.of(context).size.width,
-              MediaQuery.of(context).size.height),
+          size: Size(500, 500),
         ),
         child: CalendarViews(
           key: ValueKey(MediaQuery.of(context).size.width),
@@ -32,3 +31,21 @@ class _CalendarState extends State<Calendar> {
     );
   }
 }
+
+
+// @override
+//   Widget build(BuildContext context) {
+//     return CalendarControllerProvider<Event>(
+//       controller: EventController(),
+//       child: MediaQuery(
+//         data: MediaQuery.of(context).copyWith(
+//           size: Size(MediaQuery.of(context).size.width,
+//               MediaQuery.of(context).size.height),
+//         ),
+//         child: CalendarViews(
+//           key: ValueKey(MediaQuery.of(context).size.width),
+//           view: _selectedView,
+//         ),
+//       ),
+//     );
+//   }

@@ -13,7 +13,8 @@ class _FatosCalenderState extends State<FatosCalender> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(color: Colors.blue, child: const Calendar()),
+      child: Container(
+          width: 500, height: 500, color: Colors.blue, child: const Calendar()),
     );
   }
 }

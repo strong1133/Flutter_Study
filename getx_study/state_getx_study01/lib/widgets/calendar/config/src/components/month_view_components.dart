@@ -237,9 +237,10 @@ class WeekDayTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 100,
       alignment: Alignment.center,
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.symmetric(vertical: 10.0),
+      margin: EdgeInsets.all(0),
+      padding: EdgeInsets.all(0),
       decoration: BoxDecoration(
         color: backgroundColor,
         border: Border.all(
@@ -247,14 +248,7 @@ class WeekDayTile extends StatelessWidget {
           width: displayBorder ? 0.5 : 0,
         ),
       ),
-      child: Text(
-        Constants.weekTitles[dayIndex],
-        style: textStyle ??
-            TextStyle(
-              fontSize: 17,
-              color: Constants.black,
-            ),
-      ),
+      child: Text('asd'),
     );
   }
 }

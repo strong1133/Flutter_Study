@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:state_getx_study01/controller/counterController.dart';
 
-import 'package:state_getx_study01/widgets/create_calendar.dart';
+import 'widgets/fatos_calendar.dart';
 
 class Home_obs extends StatefulWidget {
   @override
@@ -25,30 +25,36 @@ class _Home_obsState extends State<Home_obs> {
   Widget _buildBody() {
     return Padding(
       padding: EdgeInsets.all(8.0),
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            Text('Hello World'),
-            SizedBox(
-              height: 10.0,
-            ),
-            Obx(() => Text('${controller.count}')),
-            SizedBox(
-              height: 10.0,
-            ),
-            TextButton(
-              onPressed: () {
-                controller.increment();
-              },
-              child: Text("Increase"),
-            ),
-            Divider(
-              thickness: 2.0,
-              height: 2.0,
-              color: Colors.black,
-            ),
-            Calendar()
-          ],
+      child: SafeArea(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Text('Hello World'),
+              SizedBox(
+                height: 10.0,
+              ),
+              Obx(() => Text('${controller.count}')),
+              SizedBox(
+                height: 10.0,
+              ),
+              TextButton(
+                onPressed: () {
+                  controller.increment();
+                },
+                child: Text("Increase"),
+              ),
+              Divider(
+                thickness: 2.0,
+                height: 2.0,
+                color: Colors.black,
+              ),
+              Container(
+                width: 500,
+                height: 700,
+                child: const FatosCalender(),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -248,7 +248,14 @@ class WeekDayTile extends StatelessWidget {
           width: displayBorder ? 0.5 : 0,
         ),
       ),
-      child: Text('asd'),
+      child: Text(
+        Constants.weekTitles[dayIndex],
+        style: textStyle ??
+            TextStyle(
+              fontSize: 17,
+              color: Constants.black,
+            ),
+      ),
     );
   }
 }

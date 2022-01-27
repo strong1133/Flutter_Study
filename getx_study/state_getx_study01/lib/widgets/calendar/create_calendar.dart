@@ -6,7 +6,10 @@ import './calendar_views.dart';
 import './enumerations.dart';
 
 class Calendar extends StatefulWidget {
-  const Calendar({Key? key}) : super(key: key);
+  dynamic width;
+  dynamic height;
+
+  Calendar(this.width, this.height, {Key? key}) : super(key: key);
 
   @override
   _CalendarState createState() => _CalendarState();
@@ -21,7 +24,7 @@ class _CalendarState extends State<Calendar> {
       controller: EventController(),
       child: MediaQuery(
         data: MediaQuery.of(context).copyWith(
-          size: Size(500, 500),
+          size: Size(widget.width, widget.height),
         ),
         child: CalendarViews(
           key: ValueKey(MediaQuery.of(context).size.width),

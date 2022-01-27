@@ -49,7 +49,7 @@ class _Home_obsState extends State<Home_obs> {
                 color: Colors.black,
               ),
               Container(
-                child: const FatosCalender(),
+                child: FatosCalender(700, 700),
               )
             ],
           ),

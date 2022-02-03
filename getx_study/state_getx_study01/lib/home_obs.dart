@@ -49,11 +49,12 @@ class _Home_obsState extends State<Home_obs> {
                 height: 2.0,
                 color: Colors.black,
               ),
-              FatosCalender(
-                  MediaQuery.of(context).size.width -
-                      defaultSidebarWidth(context) -
-                      50,
-                  MediaQuery.of(context).size.width / 2.4)
+              // FatosCalender(
+              //     MediaQuery.of(context).size.width -
+              //         defaultSidebarWidth(context) -
+              //         50,
+              //     MediaQuery.of(context).size.width / 2.4)
+              FatosCalender(380, 500, 1)
             ],
           ),
         ),

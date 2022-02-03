@@ -98,7 +98,7 @@ class MonthView<T> extends StatefulWidget {
   final double borderSize;
 
   /// Defines aspect ratio of day cells in month calendar page.
-  final double cellAspectRatio;
+  dynamic cellAspectRatio;
 
   /// Width of month view.
   ///
@@ -106,7 +106,7 @@ class MonthView<T> extends StatefulWidget {
   final double? width;
 
   /// Main [Widget] to display month view.
-  const MonthView({
+  MonthView({
     Key? key,
     this.showBorder = true,
     this.borderColor = Constants.defaultBorderColor,
@@ -116,7 +116,7 @@ class MonthView<T> extends StatefulWidget {
     this.controller,
     this.initialMonth,
     this.borderSize = 1,
-    this.cellAspectRatio = 1.8,
+    this.cellAspectRatio,
     this.headerBuilder,
     this.weekDayBuilder,
     this.pageTransitionDuration = const Duration(milliseconds: 300),

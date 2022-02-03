@@ -8,8 +8,9 @@ import 'month_view_widget.dart';
 
 class CalendarViews extends StatelessWidget {
   final CalendarView view;
+  dynamic ratio;
 
-  const CalendarViews({Key? key, this.view = CalendarView.month})
+  CalendarViews({Key? key, this.view = CalendarView.month, this.ratio})
       : super(key: key);
 
   final _breakPoint = 2500.0;
@@ -27,9 +28,11 @@ class CalendarViews extends StatelessWidget {
           child: view == CalendarView.month
               ? MonthViewWidget(
                   width: width,
+                  ratio: this.ratio,
                 )
               : MonthViewWidget(
                   width: width,
+                  ratio: this.ratio,
                 )),
     );
   }

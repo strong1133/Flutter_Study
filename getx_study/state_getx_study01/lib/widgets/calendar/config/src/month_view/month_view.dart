@@ -116,7 +116,7 @@ class MonthView<T> extends StatefulWidget {
     this.controller,
     this.initialMonth,
     this.borderSize = 1,
-    this.cellAspectRatio = 0.9,
+    this.cellAspectRatio = 1.8,
     this.headerBuilder,
     this.weekDayBuilder,
     this.pageTransitionDuration = const Duration(milliseconds: 300),

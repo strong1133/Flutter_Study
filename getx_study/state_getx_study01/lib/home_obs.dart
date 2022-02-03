@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:state_getx_study01/controller/counterController.dart';
 
+import 'sizes.dart';
 import 'widgets/fatos_calendar.dart';
 
 class Home_obs extends StatefulWidget {
@@ -48,9 +49,11 @@ class _Home_obsState extends State<Home_obs> {
                 height: 2.0,
                 color: Colors.black,
               ),
-              Container(
-                child: FatosCalender(700, 700),
-              )
+              FatosCalender(
+                  MediaQuery.of(context).size.width -
+                      defaultSidebarWidth(context) -
+                      50,
+                  MediaQuery.of(context).size.width / 2.4)
             ],
           ),
         ),

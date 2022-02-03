@@ -6,8 +6,11 @@ class FatosCalender extends StatefulWidget {
   dynamic height;
   dynamic raito;
 
-  FatosCalender(this.width, this.height, this.raito, {Key? key})
-      : super(key: key);
+  FatosCalender(dynamic widthIn, dynamic heightIn, {dynamic ratioIn = 1}) {
+    width = widthIn;
+    height = heightIn;
+    raito = ratioIn;
+  }
 
   @override
   _FatosCalenderState createState() => _FatosCalenderState();

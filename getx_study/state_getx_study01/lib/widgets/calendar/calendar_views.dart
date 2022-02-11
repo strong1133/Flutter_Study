@@ -13,11 +13,11 @@ class CalendarViews extends StatelessWidget {
   CalendarViews({Key? key, this.view = CalendarView.month, this.ratio})
       : super(key: key);
 
-  final _breakPoint = 2500.0;
+  final _breakPoint = 5500.0;
 
   @override
   Widget build(BuildContext context) {
-    final availableWidth = MediaQuery.of(context).size.width / 1.3;
+    final availableWidth = MediaQuery.of(context).size.width;
     final width = min(_breakPoint, availableWidth);
 
     return Container(

@@ -1,0 +1,23 @@
+{
+  "hello": "안녕",
+  "name": "이름",
+  "clear": "청소",
+  "english": "English",
+  "korean": "한국어",
+  "search": "검색",
+  "maps": "길안내",
+  "products": "상품",
+  "service": "서비스",
+  "my": "My",
+  "login": "로그인",
+  "logout": "로그아웃",
+  "setting": "설정",
+  "myNameIs": "내 이름은 {}",
+  "namedArgs": "namedArgs {name}",
+  "argsWithNamedArgs": "args: {}, {}, Named Args {name}",
+  "mode":{
+    "mode1":"{}과 함께한다.",
+    "mode2":"{}와 이별한다.",
+    "mode3":"{}를 응원한다."
+  }
+}

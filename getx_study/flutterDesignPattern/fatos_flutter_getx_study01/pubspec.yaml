@@ -34,6 +34,17 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  easy_localization: ^3.0.0
+  http: ^0.13.4
+  implicitly_animated_reorderable_list: ^0.4.2
+  material_floating_search_bar: ^0.3.6
+  archive: ^3.1.6
+  pluto_grid: ^2.9.0
+  get: ^4.6.1
+  fmvt:
+    git:
+      url: ssh://git@git.fatos.biz:30022/source/argos/component/fmvt.git
+      ref: develop
 
 dev_dependencies:
   flutter_test:

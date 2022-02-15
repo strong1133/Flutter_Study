@@ -1,0 +1,23 @@
+{
+  "hello": "hello",
+  "name": "name",
+  "clear": "clear",
+  "english": "English",
+  "korean": "한국어",
+  "search": "Search",
+  "maps": "Maps",
+  "products": "Products",
+  "service": "Service",
+  "my": "My",
+  "login": "Login",
+  "logout": "Logout",
+  "setting": "Settings",
+  "myNameIs": "My Name is {}",
+  "namedArgs": "Named Args {name}",
+  "argsWithNamedArgs": "args: {}, {}, Named Args {name}",
+  "mode":{
+    "mode1":"With {}.",
+    "mode2":"leave with a {}.",
+    "mode3":"cheer for {}."
+  }
+}

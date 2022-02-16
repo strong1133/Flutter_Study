@@ -5,8 +5,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'tweens.dart';
-
 class ColoredLinearProgressIndicator extends ProgressIndicator {
   /// Creates a colored linear progress indicator.
   ///
@@ -18,8 +16,8 @@ class ColoredLinearProgressIndicator extends ProgressIndicator {
     this.minHeight,
     String? semanticsLabel,
     String? semanticsValue,
-  }) : assert(minHeight == null || minHeight > 0),
-       super(
+  })  : assert(minHeight == null || minHeight > 0),
+        super(
           key: key,
           value: value,
           backgroundColor: backgroundColor,
@@ -33,12 +31,17 @@ class ColoredLinearProgressIndicator extends ProgressIndicator {
   final double? minHeight;
 
   @override
-  _ColoredLinearProgressIndicatorState createState() => _ColoredLinearProgressIndicatorState();
+  _ColoredLinearProgressIndicatorState createState() =>
+      _ColoredLinearProgressIndicatorState();
 }
 
-class _ColoredLinearProgressIndicatorState extends State<ColoredLinearProgressIndicator> with SingleTickerProviderStateMixin {
+class _ColoredLinearProgressIndicatorState
+    extends State<ColoredLinearProgressIndicator>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  Animatable<Color?> _tweenSequence = linearTweenSequence;
+  final Animatable<Color?> _tweenSequence = linearTweenSequence!;
+
+  static Animatable<Color?>? get linearTweenSequence => null;
 
   @override
   void initState() {
@@ -65,7 +68,8 @@ class _ColoredLinearProgressIndicatorState extends State<ColoredLinearProgressIn
             value: widget.value,
             backgroundColor: widget.backgroundColor,
             minHeight: widget.minHeight ?? 4.0,
-            valueColor: AlwaysStoppedAnimation<Color>(_tweenSequence.evaluate(_controller)!),
+            valueColor: AlwaysStoppedAnimation<Color>(
+                _tweenSequence.evaluate(_controller)!),
             semanticsLabel: widget.semanticsLabel,
             semanticsValue: widget.semanticsValue,
           );

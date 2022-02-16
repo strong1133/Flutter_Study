@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/animation.dart';
-
 import 'colors.dart';
 
 const double _kCircularColorChangeDelay = 12.0;

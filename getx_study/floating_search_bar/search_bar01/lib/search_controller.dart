@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:search_bar01/search_place.dart';
+import 'dart:io';
 
 class SearchController extends GetxController {
   bool isLoading = false;
@@ -15,6 +16,10 @@ class SearchController extends GetxController {
 
   void search() {
     isLoading = true;
+
+    suggestions = resSummy;
+    isLoading = false;
+    open = false;
     update();
   }
 
@@ -87,6 +92,14 @@ const List<Place> history = [
   ),
   Place(
     name: 'Fatos Corp',
+    country: '구로 디지털 단지',
+    state: '파토스',
+  ),
+];
+
+const List<Place> resSummy = [
+  Place(
+    name: '파토스 주식회사',
     country: '구로 디지털 단지',
     state: '파토스',
   ),

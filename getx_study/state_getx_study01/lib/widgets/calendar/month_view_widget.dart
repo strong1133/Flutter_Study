@@ -14,6 +14,7 @@ class MonthViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MonthView<Event>(
+      onCellTap: (events, date) => {print("events  $events =  |  date  $date")},
       key: state,
       width: width,
       cellAspectRatio: this.ratio,

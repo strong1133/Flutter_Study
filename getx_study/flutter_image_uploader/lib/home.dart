@@ -11,7 +11,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var byteData;
   ImageController imageController = Get.put(ImageController());
 
   @override
@@ -19,18 +18,12 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
 
-    convertAssetToByteData();
-  }
-
-  Future<void> convertAssetToByteData() async {
-    byteData = (await rootBundle.load('assets/images/prof_sam.jpeg'))
-        .buffer
-        .asUint8List();
-    setState(() {}); // 2번
+    imageController.convertAssetToByteData();
   }
 
   @override
   Widget build(BuildContext context) {
+    print(imageController.fileName['path']);
     return Scaffold(
       appBar: AppBar(title: Text('Image Upload')),
       body: _buildBody(),
@@ -46,9 +39,20 @@ class _HomeState extends State<Home> {
           SizedBox(
             height: 50,
           ),
-          Container(
-            child: Image.memory(byteData.runtimeType),
-          )
+          TextButton(
+              style: ButtonStyle(
+                  overlayColor:
+                      MaterialStateProperty.all<Color>(Colors.transparent)),
+              onPressed: () {
+                imageController.pickFile();
+              },
+              child: Obx(
+                () => Image.memory(
+                  imageController.byteData,
+                  width: 200,
+                  height: 300,
+                ),
+              ))
         ],
       ),
     );

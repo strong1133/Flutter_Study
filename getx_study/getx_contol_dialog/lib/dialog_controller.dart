@@ -18,12 +18,12 @@ class DialogController extends GetxController {
 
   // 경고창 Alert CALL
   void openWarn(context, msg) {
-    altDialog.warnAlert(context, msg);
+    altDialog.wanrAltCB(context, msg: msg);
   }
 
   // 성공 Alert CALL
   void openSuccess(context, {String? msg, Function? callback}) {
-    altDialog.successAltCB(context);
+    altDialog.successAltCB(context, msg: msg);
   }
 
   // 실패 Alert CALL

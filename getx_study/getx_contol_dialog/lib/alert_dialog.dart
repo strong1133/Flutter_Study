@@ -375,4 +375,40 @@ class AltDialog {
       ],
     ).show();
   }
+
+  void wanrAltCB(BuildContext context,
+      {String? msg, Function? callback}) async {
+    var tempMsg = "";
+    var tempFuntion = () {
+      print('default ');
+    };
+
+    if (msg != null) {
+      tempMsg = msg;
+    }
+    if (callback != null) {
+      tempFuntion = callback();
+    }
+    Alert(
+      context: context,
+      type: AlertType.warning,
+      title: "실패",
+      style: alertStyle,
+      desc: tempMsg,
+      buttons: [
+        DialogButton(
+          onPressed: () {
+            Navigator.pop(context);
+            tempFuntion();
+          },
+          child: const Text(
+            "OK",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          color: Colors.deepPurple, //Color.fromRGBO(0, 179, 134, 1.0),
+          radius: BorderRadius.circular(0.0),
+        ),
+      ],
+    ).show();
+  }
 }

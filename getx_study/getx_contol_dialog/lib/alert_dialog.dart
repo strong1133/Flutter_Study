@@ -105,18 +105,10 @@ class AltDialog {
                       Navigator.of(dialogContext).pop();
                     }
                   : () => Navigator.of(dialogContext).pop(),
-              style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  minimumSize: const Size(100, 40),
-                  primary: Colors.amber),
             ),
             OutlinedButton(
               child: const Text('취소'),
               onPressed: () => Navigator.of(dialogContext).pop(),
-              style: OutlinedButton.styleFrom(
-                  primary: Colors.amber,
-                  side: const BorderSide(color: Colors.amber, width: 2),
-                  minimumSize: const Size(100, 40)),
             ),
           ],
         );
@@ -285,19 +277,17 @@ class AltDialog {
                   callback();
                 },
                 style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    minimumSize: const Size(100, 40),
-                    primary: Colors.amber),
+                  elevation: 0,
+                  minimumSize: const Size(100, 40),
+                ),
               ),
               OutlinedButton(
                 child: const Text('취소'),
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                style: OutlinedButton.styleFrom(
-                    primary: Colors.amber,
-                    side: const BorderSide(color: Colors.amber, width: 2),
-                    minimumSize: const Size(100, 40)),
+                style:
+                    OutlinedButton.styleFrom(minimumSize: const Size(100, 40)),
               ),
             ],
           );
@@ -333,7 +323,6 @@ class AltDialog {
             "OK",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
-          color: Colors.deepPurple, //Color.fromRGBO(0, 179, 134, 1.0),
           radius: BorderRadius.circular(0.0),
         ),
       ],
@@ -369,7 +358,6 @@ class AltDialog {
             "OK",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
-          color: Colors.deepPurple, //Color.fromRGBO(0, 179, 134, 1.0),
           radius: BorderRadius.circular(0.0),
         ),
       ],
@@ -405,7 +393,7 @@ class AltDialog {
             "OK",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
-          color: Colors.deepPurple, //Color.fromRGBO(0, 179, 134, 1.0),
+          //Color.fromRGBO(0, 179, 134, 1.0),
           radius: BorderRadius.circular(0.0),
         ),
       ],

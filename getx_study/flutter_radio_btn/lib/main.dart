@@ -50,19 +50,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             },
           ),
         ),
-        ListTile(
-          title: const Text('Lafayette'),
-          leading: Radio(
-            value: Dispacth.f,
-            groupValue: _dispacth,
-            onChanged: (Dispacth? value) {
-              print(value);
-              setState(() {
-                _dispacth = value!;
-              });
-            },
-          ),
-        ),
       ],
     );
   }

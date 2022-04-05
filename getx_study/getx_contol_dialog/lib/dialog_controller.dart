@@ -38,8 +38,14 @@ class DialogController extends GetxController {
 
   // 로딩 Alert CALL
   void loading(context) {
-    altDialog.loadingDialog(context,
-        second: 2, callback: () => resController(context));
+    altDialog.loadingDialog(context, second: 2, callback: (lcon) {
+      String mc = mockApi();
+      print(mc);
+      if (mc == 'Success') {
+        Navigator.pop(lcon);
+        resController(context);
+      }
+    });
   }
   //
   //
@@ -71,5 +77,10 @@ class DialogController extends GetxController {
     } else {
       openFail(context);
     }
+  }
+
+  String mockApi() {
+    Future.delayed(Duration(seconds: 5), () {});
+    return "Success";
   }
 }

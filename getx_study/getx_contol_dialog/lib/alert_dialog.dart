@@ -205,11 +205,10 @@ class AltDialog {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        Future.delayed(Duration(seconds: second ?? 3), () {
-          Navigator.pop(context);
-
+        Future.delayed(Duration(seconds: second ?? 0), () {
           if (callback != null) {
-            callback();
+            callback(context);
+            // Navigator.pop(context);
           }
         });
 

@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 
 import 'dart:js' as js;
 
+import 'package:flutter_html_js/frame.dart';
+
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -23,7 +25,8 @@ class Home extends StatelessWidget {
               onPressed: () {
                 js.context.callMethod('alert', ['Call By 1']);
               },
-              child: Text('Call Index Func'))
+              child: Text('Call Index Func')),
+          Frame()
         ],
       ),
     );

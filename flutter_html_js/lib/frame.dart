@@ -27,31 +27,7 @@ class _FrameState extends State<Frame> {
 
     _element = html.IFrameElement()
       ..style.border = 'none'
-      ..srcdoc = """
-        <!DOCTYPE html>
-          <head>
-            <script>
-              // variant 1
-              parent.connect_content_to_flutter && parent.connect_content_to_flutter(window)
-              function hello(msg) {
-                alert(msg)
-              }
-              function alert2(msg) {
-                console.log(msg)
-              }
-              // variant 2
-              window.addEventListener("message", (message) => {
-                if (message.data.id === "test") {
-                  alert(message.data.msg)
-                }
-              })
-            </script>
-          </head>
-          <body>
-            <h2>I'm IFrame</h2>
-          </body>
-        </html>
-        """;
+      ..src = './assets/sample.html';
 
     // ignore:undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(

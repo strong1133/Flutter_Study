@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import 'dart:js' as js;
-
-import 'package:flutter_html_js/frame.dart';
+import 'package:flutter_html_js/wv.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
+
+  var controller;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +21,20 @@ class Home extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
+          SizedBox(
+            width: 200,
+            height: 200,
+            child: WV(
+              ctrl: (c) {
+                controller = c;
+              },
+            ),
+          ),
           ElevatedButton(
-              onPressed: () {
-                js.context.callMethod('alert', ['Call By 1']);
+              onPressed: () async {
+                print(await controller.evaluateJavascript(''' hello();'''));
               },
               child: Text('Call Index Func')),
-          Frame()
         ],
       ),
     );

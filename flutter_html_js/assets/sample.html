@@ -1,23 +1,37 @@
 <!DOCTYPE html>
           <head>
-            <script>
-              // variant 1
-              parent.connect_content_to_flutter && parent.connect_content_to_flutter(window)
-              function hello(msg) {
-                alert(msg)
-              }
-              function alert2(msg) {
-                console.log(msg)
-              }
-              // variant 2
-              window.addEventListener("message", (message) => {
-                if (message.data.id === "test") {
-                  alert(message.data.msg)
-                }
-              })
-            </script>
+         
           </head>
-          <body>
+          <body style="background-color: #e64;">
             <h2>I'm IFrame</h2>
+
+            <script>
+              var event=1;
+              // variant 1
+              function hello() {
+                console.log('in js msg')
+    
+                setInterval(function() {
+                event++
+                WV.postMessage(event);
+              }, 3000);
+
+                return 'msg'
+              }
+             
+
+            function testInterval(){
+              
+              setInterval(function() {
+                event++
+                console.log(event)
+              }, 3000);
+
+              console.log(event);
+              return event
+            }
+
+
+            </script>
           </body>
         </html>

@@ -1,3 +1,4 @@
+import 'package:fatos_flutter_getx_study01/app/routes/app_pages.dart';
 import 'package:fatos_flutter_getx_study01/app/views/root_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -16,8 +17,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      home: RootPage(),
+    return GetMaterialApp.router(
+      getPages: AppPages.routes,
     );
   }
 }

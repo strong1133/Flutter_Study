@@ -17,7 +17,7 @@ class RootView extends GetView<RootController> {
           ),
           body: GetRouterOutlet(
             // key: Get.nestedKey(Routes.ROOT),
-            initialRoute: Routes.ROOT,
+            initialRoute: Routes.HOME,
             anchorRoute: Routes.ROOT,
             filterPages: (afterAnchor) {
               return afterAnchor.take(1);

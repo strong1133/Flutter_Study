@@ -6,11 +6,17 @@ class HomeRootView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Root'),
+    print("XXX HOME BIULD");
+    return Center(
+      child: Column(
+        children: [
+          Text("HOME"),
+          SizedBox(
+            height: 20,
+          ),
+          TextField()
+        ],
       ),
-      body: SearchPage(),
     );
   }
 }

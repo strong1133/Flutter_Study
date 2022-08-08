@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
 
-class TestController extends GetxController{
+class TestController extends GetxController {
+  int num = 0;
 
-  int num= 0;
 
   get getNum => num;
 
-  void add(){
-    num++;
+
+  void add(int _) {
+    num += _;
   }
 
-  
+ 
 }

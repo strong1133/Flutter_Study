@@ -1,14 +1,18 @@
+import 'package:controller_instance_test/test_controller.dart';
 import 'package:get/get.dart';
 
-class TestController extends GetxService{
+class TestService extends GetxService {
+  String tag;
+  late TestController testController;
+  TestService({required this.tag, required this.testController});
 
-  int num= 0;
+  TestService get getService => Get.find(tag: tag);
 
-  get getNum => num;
-
-  void add(int _){
-    num += _;
+  void getServiceInstance() {
+    print(getService.hashCode);
   }
-
-  
+  getCtrlInstance(){
+    print(testController.getNum);
+    print(testController.hashCode);
+  }
 }

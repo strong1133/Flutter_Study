@@ -8,8 +8,8 @@ class Root extends StatelessWidget {
    Root({Key? key}) : super(key: key);
 
 
-  TestController testController1 = Get.put(TestController());
-  TestController testController2 = Get.put(TestController());
+  TestController testController1 = Get.put(TestController(), tag: 'testController1');
+  TestController testController2 = Get.put(TestController(), tag: 'testController2');
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class Root extends StatelessWidget {
 
                   testController1.add(3);
                   testController2.add(4);
-                  print("testController1  :: ${testController2.getNum}");
+                  print("testController1  :: ${testController1.getNum}");
                   print("testController2  :: ${testController2.getNum}");
 
                   

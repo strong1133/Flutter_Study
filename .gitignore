@@ -117,3 +117,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+login/frontend/node_modules
+login/frontend/package-lock.json

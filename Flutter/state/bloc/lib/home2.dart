@@ -5,11 +5,14 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class Home2 extends StatelessWidget {
-  Home2({Key? key}) : super(key: key);
+  Home2({Key? key}) : super(key: key){
+    print("생성자 호출");
+  }
   CounterBlocCtrl counterBlocCtrl = CounterBlocCtrl();
 
   @override
   Widget build(BuildContext context) {
+      print("빌더 호출");
     return Center(
       child: Column(
         children: [

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:login/getx/loing.dart';
+import 'package:login/getx/%08login.dart';
 
 class RootGetX extends StatelessWidget {
   const RootGetX({Key? key}) : super(key: key);

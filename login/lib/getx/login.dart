@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:login/widgets/inputter.dart';
 
 class Login extends StatelessWidget {
@@ -20,6 +21,15 @@ class Login extends StatelessWidget {
             // ),
             child: Column(
               children: [
+                Text('Strong Sub',
+                    style: GoogleFonts.doHyeon(
+                      color: Colors.white,
+                      fontSize: 29,
+                      fontWeight: FontWeight.bold,
+                    )),
+                const SizedBox(
+                  height: 30,
+                ),
                 Column(
                   children: [
                     Inputter(
@@ -86,6 +96,30 @@ class Login extends StatelessWidget {
                               )
                             ],
                           )),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Text(
+                          '아직 회원이 아니라면?',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            print("Go Register");
+                          },
+                          child: const Text(
+                            '회원가입',
+                            style: TextStyle(color: Colors.white, decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ],
                     )
                   ],
                 )

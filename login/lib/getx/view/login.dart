@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login/getx/controller/login_ctrl.dart';
 import 'package:login/widgets/inputter.dart';
 
 class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+  Login({Key? key}) : super(key: key);
+
+  LoginCtrl loginCtrl = Get.put(LoginCtrl());
 
   @override
   Widget build(BuildContext context) {
     return Container(
         width: double.maxFinite,
         height: double.maxFinite,
-        decoration: const BoxDecoration(image: DecorationImage(fit: BoxFit.fill, image: AssetImage('images/login_background.png'))),
+        decoration: const BoxDecoration(image: DecorationImage(fit: BoxFit.cover, image: AssetImage('images/login_background.png'))),
         child: Center(
           child: SizedBox(
             width: 400,
@@ -36,7 +40,7 @@ class Login extends StatelessWidget {
                       placeHolder: 'ID',
                       top: true,
                       onChanged: (e) {
-                        print("TOP ${e}");
+                        loginCtrl.id.value = e;
                       },
                     ),
                     Inputter(
@@ -44,7 +48,7 @@ class Login extends StatelessWidget {
                       isSecret: true,
                       bottom: true,
                       onChanged: (e) {
-                        print("Bottom ${e}");
+                        loginCtrl.pwd.value = e;
                       },
                     ),
                     const SizedBox(
@@ -63,7 +67,9 @@ class Login extends StatelessWidget {
                               }
                             }),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            loginCtrl.loginBtnClick();
+                          },
                           child: const Text(
                             '로그인',
                             style: TextStyle(fontWeight: FontWeight.bold),

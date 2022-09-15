@@ -13,10 +13,13 @@ class _App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomTextFormField()
+            CustomTextFormField(
+              hintText: '이메일을 입력해주세요.',
+            )
           ],
         )
       ),

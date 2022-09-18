@@ -47,7 +47,7 @@ class CustomTextFormField extends StatelessWidget {
         focusedBorder: baseBorder.copyWith(
           borderSide: baseBorder.borderSide.copyWith(color: PRIMARY_COLOR) 
         ), // 선택 되었을 때 보더
-        
+        enabledBorder: baseBorder
       ),
     );
   }

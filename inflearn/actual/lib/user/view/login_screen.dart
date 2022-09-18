@@ -10,37 +10,55 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultLayout(child: SafeArea(
-      top: true,
-      bottom: false,
-      child: Column(
+    return DefaultLayout(
+        child: 
+        SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          child: SafeArea(
+              top: true,
+              bottom: false,
+              child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _Title(),
+              const SizedBox(
+                height: 16.0,
+              ),
               _SubTitle(),
-              Image.asset('asset/img/misc/logo.png',
-              width: MediaQuery.of(context).size.width/3 *2),
+              Image.asset('asset/img/misc/logo.png', width: MediaQuery.of(context).size.width / 3 * 2),
               CustomTextFormField(
                 hintText: '이메일을 입력해주세요.',
-                onChanged: (String value){},
+                onChanged: (String value) {},
+              ),
+              const SizedBox(
+                height: 16.0,
               ),
               CustomTextFormField(
                 hintText: '비밀번호를 입력해주세요.',
-                onChanged: (String value){},
+                onChanged: (String value) {},
                 obscureText: true,
               ),
-              ElevatedButton(onPressed: (){}, child: Text('로그인'),
-              style: ElevatedButton.styleFrom(
-                primary: PRIMARY_COLOR
-              ),),
-              TextButton(onPressed: (){}, child: Text('회원가입'),
-              style: TextButton.styleFrom(
-                primary: PRIMARY_COLOR
-              ),)
+              const SizedBox(
+                height: 16.0,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text('로그인'),
+                style: ElevatedButton.styleFrom(primary: PRIMARY_COLOR),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text('회원가입'),
+                style: TextButton.styleFrom(primary: PRIMARY_COLOR),
+              )
             ],
           ),
-    ));
+              ),
+            ),
+        ));
   }
 }
 
@@ -49,12 +67,10 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('환영합니다.', style: TextStyle(
-      fontSize: 34,
-      fontWeight: FontWeight.w500,
-      color: Colors.black
-    ),);
-    
+    return Text(
+      '환영합니다.',
+      style: TextStyle(fontSize: 34, fontWeight: FontWeight.w500, color: Colors.black),
+    );
   }
 }
 
@@ -63,10 +79,9 @@ class _SubTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('이메일과 비밀번호를 입력해서 로그인 해주세요! \n오늘도 성공적인 주문이 되길.', style: TextStyle(
-      fontSize: 16,
-      color: BODY_TEXT_COLOR
-    ),);
-    
+    return Text(
+      '이메일과 비밀번호를 입력해서 로그인 해주세요! \n오늘도 성공적인 주문이 되길.',
+      style: TextStyle(fontSize: 16, color: BODY_TEXT_COLOR),
+    );
   }
 }

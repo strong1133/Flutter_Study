@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Grid3 extends StatelessWidget {
+class Grid3Fc extends StatelessWidget {
   double width;
   double height;
 
-  Grid3({this.width = 200, this.height = 200, Key? key}) : super(key: key);
+  Grid3Fc({this.width = 200, this.height = 200, Key? key}) : super(key: key);
 
   final List<List<int>> tableData = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

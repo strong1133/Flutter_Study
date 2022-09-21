@@ -3,7 +3,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:webviewx/webviewx.dart';
 
 class WX extends StatefulWidget {
-  const WX({Key? key}) : super(key: key);
+
+  Function? callback;
+  WX({this.callback, Key? key}) : super(key: key);
 
   @override
   State<WX> createState() => _WXState();
@@ -13,12 +15,14 @@ class _WXState extends State<WX> {
   @override
   Widget build(BuildContext context) {
     return WebViewX(
-        width: 400,
-        height: 400,
+        width: 1200,
+        height: 600,
         initialSourceType: SourceType.html,
         onWebViewCreated: (controller) async {
           await controller.loadContent('web/test.html', SourceType.html, fromAssets: true);
-          controller.callJsMethod('test', []);
+          if(widget.callback != null){
+            widget.callback!(controller);
+          }
         });
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_grid/home.dart';
+import 'package:flutter_grid/grid2.dart';
+import 'package:flutter_grid/grtid3.dart';
 
 void main() {
   runApp(const Root());
@@ -11,7 +12,7 @@ class Root extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(appBar: AppBar(), body: Home(),),
+      home: Scaffold(appBar: AppBar(), body:Column(children: [  Grid3(width: 500, height: 500,)]),),
     );
   }
 }

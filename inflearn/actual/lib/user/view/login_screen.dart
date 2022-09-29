@@ -4,11 +4,20 @@ import 'dart:io';
 import 'package:actual/common/component/custom_text_form_field.dart';
 import 'package:actual/common/const/colors.dart';
 import 'package:actual/common/layout/default_layout.dart';
+import 'package:actual/common/view/root_tab.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  String userName = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +49,18 @@ class LoginScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 3 * 2),
               CustomTextFormField(
                 hintText: '이메일을 입력해주세요.',
-                onChanged: (String value) {},
+                onChanged: (String value) {
+                  userName = value;
+                },
               ),
               const SizedBox(
                 height: 16.0,
               ),
               CustomTextFormField(
                 hintText: '비밀번호를 입력해주세요.',
-                onChanged: (String value) {},
+                onChanged: (String value) {
+                  password = value;
+                },
                 obscureText: true,
               ),
               const SizedBox(
@@ -56,6 +69,7 @@ class LoginScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   final rawString = 'test@codefactory.ai:testtest';
+                  // final rawString = '$userName:$password';
                   Codec<String, String> stringToBase64 = utf8.fuse(base64);
 
                   String token = stringToBase64.encode(rawString);
@@ -66,6 +80,10 @@ class LoginScreen extends StatelessWidget {
                       ));
 
                   print(res.data);
+
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => RootTab()),
+                  );
                 },
                 child: Text('로그인'),
                 style: ElevatedButton.styleFrom(primary: PRIMARY_COLOR),

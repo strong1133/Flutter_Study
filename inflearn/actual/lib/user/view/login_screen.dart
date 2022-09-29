@@ -1,23 +1,30 @@
+import 'dart:io';
+
 import 'package:actual/common/component/custom_text_form_field.dart';
 import 'package:actual/common/const/colors.dart';
 import 'package:actual/common/layout/default_layout.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final dio = Dio();
+
+    final EmulatorIp = '10.0.2.2:3000';
+    final SimulatorIp = '127.0.0.1:3000';
+
+    final ip = Platform.isIOS ? SimulatorIp : EmulatorIp;
+
     return DefaultLayout(
-        child: 
-        SingleChildScrollView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          child: SafeArea(
-              top: true,
-              bottom: false,
-              child: Padding(
+        child: SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      child: SafeArea(
+        top: true,
+        bottom: false,
+        child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
@@ -28,7 +35,8 @@ class LoginScreen extends StatelessWidget {
                 height: 16.0,
               ),
               _SubTitle(),
-              Image.asset('asset/img/misc/logo.png', width: MediaQuery.of(context).size.width / 3 * 2),
+              Image.asset('asset/img/misc/logo.png',
+                  width: MediaQuery.of(context).size.width / 3 * 2),
               CustomTextFormField(
                 hintText: '이메일을 입력해주세요.',
                 onChanged: (String value) {},
@@ -45,7 +53,9 @@ class LoginScreen extends StatelessWidget {
                 height: 16.0,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  final res = await dio.post('http://$ip/auth/login');
+                },
                 child: Text('로그인'),
                 style: ElevatedButton.styleFrom(primary: PRIMARY_COLOR),
               ),
@@ -56,9 +66,9 @@ class LoginScreen extends StatelessWidget {
               )
             ],
           ),
-              ),
-            ),
-        ));
+        ),
+      ),
+    ));
   }
 }
 
@@ -69,7 +79,8 @@ class _Title extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '환영합니다.',
-      style: TextStyle(fontSize: 34, fontWeight: FontWeight.w500, color: Colors.black),
+      style: TextStyle(
+          fontSize: 34, fontWeight: FontWeight.w500, color: Colors.black),
     );
   }
 }

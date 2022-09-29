@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:actual/common/component/custom_text_form_field.dart';
@@ -54,13 +55,32 @@ class LoginScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  final res = await dio.post('http://$ip/auth/login');
+                  final rawString = 'test@codefactory.ai:testtest';
+                  Codec<String, String> stringToBase64 = utf8.fuse(base64);
+
+                  String token = stringToBase64.encode(rawString);
+
+                  final res = await dio.post('http://$ip/auth/login',
+                      options: Options(
+                        headers: {'Authorization': 'Basic $token'},
+                      ));
+
+                  print(res.data);
                 },
                 child: Text('로그인'),
                 style: ElevatedButton.styleFrom(primary: PRIMARY_COLOR),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  final refreshToken =
+                      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RAY29kZWZhY3RvcnkuYWkiLCJzdWIiOiJmNTViMzJkMi00ZDY4LTRjMWUtYTNjYS1kYTlkN2QwZDkyZTUiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTY2NDQ0NDk5NiwiZXhwIjoxNjY0NTMxMzk2fQ.KcAKPg1yUojaeUe-gpyP95tiW_9Nu_zo64doryQsHqE';
+                  final res = await dio.post('http://$ip/auth/token',
+                      options: Options(
+                        headers: {'Authorization': 'Bearer $refreshToken'},
+                      ));
+
+                  print(res.data);
+                },
                 child: Text('회원가입'),
                 style: TextButton.styleFrom(primary: PRIMARY_COLOR),
               )

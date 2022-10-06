@@ -1,3 +1,4 @@
+import 'package:actual/common/layout/default_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -7,8 +8,9 @@ class RootTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text('Root Tab')),
+    return DefaultLayout(
+      title: '코팩 딜리버리',
+      child: Center(child: Text('Root Tab')),
     );
   }
 }

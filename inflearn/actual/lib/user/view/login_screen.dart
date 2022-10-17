@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:actual/common/component/custom_text_form_field.dart';
 import 'package:actual/common/const/colors.dart';
@@ -8,7 +7,6 @@ import 'package:actual/common/layout/default_layout.dart';
 import 'package:actual/common/view/root_tab.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,12 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final dio = Dio();
-
-
-    final EmulatorIp = '10.0.2.2:3000';
-    final SimulatorIp = '127.0.0.1:3000';
-
-    final ip = Platform.isIOS ? SimulatorIp : EmulatorIp;
 
     return DefaultLayout(
         child: SingleChildScrollView(
@@ -99,14 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextButton(
                 onPressed: () async {
-                  final refreshToken =
-                      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RAY29kZWZhY3RvcnkuYWkiLCJzdWIiOiJmNTViMzJkMi00ZDY4LTRjMWUtYTNjYS1kYTlkN2QwZDkyZTUiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTY2NDQ0NDk5NiwiZXhwIjoxNjY0NTMxMzk2fQ.KcAKPg1yUojaeUe-gpyP95tiW_9Nu_zo64doryQsHqE';
-                  final res = await dio.post('http://$ip/auth/token',
-                      options: Options(
-                        headers: {'Authorization': 'Bearer $refreshToken'},
-                      ));
-
-                  print(res.data);
+                  
                 },
                 child: Text('회원가입'),
                 style: TextButton.styleFrom(primary: PRIMARY_COLOR),

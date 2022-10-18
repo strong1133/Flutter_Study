@@ -35,7 +35,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       appBar: AppBar(),
       body: TabBarView(
         controller: pageProvider.tabController,
-        children: const [News(), Plus()],
+        children: [News(), Plus()],
       ),
       bottomNavigationBar: Visibility(
         visible: homeProvider.getNaviBarVisibleFlag,

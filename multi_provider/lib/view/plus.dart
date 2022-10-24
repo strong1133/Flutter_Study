@@ -10,8 +10,8 @@ import '../widgets/buttons/green_btn.dart';
 
 class Plus extends StatelessWidget {
   Plus({super.key});
-
   HomeProvider homeProvider = Singleton().diProvider(HomeProvider);
+
   @override
   Widget build(BuildContext context) {
     Singleton().setContext(context: context);

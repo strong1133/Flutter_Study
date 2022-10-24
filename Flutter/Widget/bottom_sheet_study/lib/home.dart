@@ -1,11 +1,19 @@
-import 'package:bottom_sheet_study/home2.dart';
-import 'package:bottom_sheet_study/page_router.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:bottom_sheet_study/bottom_sheet.dart';
+import 'package:bottom_sheet_study/bottom_sheet_provider.dart';
 
-class Home extends StatelessWidget {
+import 'package:flutter/material.dart';
+
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  late BottomSheetProvider bottomSheetProvider;
+  double bsHeight = 600.0;
+  Widget inner = Container();
 
   @override
   Widget build(BuildContext context) {
@@ -18,29 +26,12 @@ class Home extends StatelessWidget {
                 showModalBottomSheet(
                     context: context,
                     builder: (_) {
-                      return bs(context);
+                      return CustomBottomSheet();
                     });
               },
               child: Text('Btn'))
         ],
       ),
     );
-  }
-
-  Widget bs(BuildContext context) {
-    return Container(
-        height: 300.0,
-        child: Center(
-          child: Column(
-            children: [
-              Text('Bottom Sheet'),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(PageRouter().createRoute(Home2()));
-                  },
-                  child: Text('Home2'))
-            ],
-          ),
-        ));
   }
 }

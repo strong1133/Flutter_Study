@@ -55,8 +55,8 @@ class _Home_obsState extends State<Home_obs> {
               //         50,
               //     MediaQuery.of(context).size.width / 2.4)
               FatosCalender(
-                1400,
-                900,
+                700,
+                700,
                 ratioIn: 1,
               )
             ],

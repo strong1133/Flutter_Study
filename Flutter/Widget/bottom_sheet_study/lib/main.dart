@@ -1,5 +1,6 @@
 import 'package:bottom_sheet_study/bottom_sheet_provider.dart';
 import 'package:bottom_sheet_study/home.dart';
+import 'package:bottom_sheet_study/home2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class App extends StatelessWidget {
       child: MaterialApp(
         home: Scaffold(
           appBar: AppBar(title: Text('Bottom Sheet'),),
-          body: Home(),
+          body: Home2(),
         ),
       ),
     );

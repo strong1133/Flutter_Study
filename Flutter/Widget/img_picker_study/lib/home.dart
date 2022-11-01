@@ -3,14 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 
 class Home extends StatelessWidget {
-   Home({super.key});
+   Home();
 
-  final ImagePicker _imagePicker = ImagePicker();
-  List<XFile> _pickedList = [];
 
   @override
   Widget build(BuildContext context) {

@@ -18,7 +18,6 @@ class Home2 extends StatelessWidget {
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text("This is a Snack bar"),
-
                     behavior: SnackBarBehavior.floating,
                     backgroundColor: Colors.green,
                   ));
@@ -27,30 +26,35 @@ class Home2 extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {
                   showModalBottomSheet(
+                      enableDrag: false,
+                      isScrollControlled: true,
                       context: context,
                       builder: (context) {
-                        return Scaffold(
-                          body: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const ListTile(
-                                leading: Icon(Icons.person),
-                                title: Text("Profile"),
+                        return Container(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxHeight: MediaQuery.of(context).size.height, //this height is not contain `Text("Just a title")`'s height.
+                            ),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                // mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  ListTile(
+                                    leading: Icon(Icons.person),
+                                    title: Text("Profile"),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(Icons.person),
+                                    title: Text("Profile"),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(Icons.person),
+                                    title: Text("Profile"),
+                                  ),
+                                  
+                                ],
                               ),
-                              const ListTile(
-                                leading: Icon(Icons.edit),
-                                title: Text("Edit"),
-                              ),
-                              const ListTile(
-                                leading: Icon(Icons.exit_to_app),
-                                title: Text("Exit"),
-                              ),
-                              TextButton(
-                                  onPressed: () {
-                                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("This is a Bottom sheet Snack bar"), behavior: SnackBarBehavior.floating,));
-                                  },
-                                  child: const Text("OK")),
-                            ],
+                            ),
                           ),
                         );
                       });

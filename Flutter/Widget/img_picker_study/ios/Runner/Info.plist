@@ -48,10 +48,10 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Used to demonstrate image picker plugin</string>
+	<string>Example usage description</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Used to capture audio for image picker plugin</string>
+	<string>Example usage description</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Used to demonstrate image picker plugin</string>
+	<string>Example usage description</string>
 </dict>
 </plist>

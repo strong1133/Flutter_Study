@@ -1,27 +1,59 @@
-import 'dart:developer';
+
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:image_picker/image_picker.dart';
 
-import 'package:multi_image_picker2/multi_image_picker2.dart';
+class Home extends StatefulWidget {
+  Home();
 
-class Home extends StatelessWidget {
-   Home();
+  @override
+  State<Home> createState() => _HomeState();
+}
 
+class _HomeState extends State<Home> {
+  PickedFile _image;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [Text('asd'), ElevatedButton(onPressed: () {
-        _pickImg();
-      }, child: Text('Go'))],
+    return Center(
+      child: Column(
+        children: [
+
+          SizedBox(height: 30,),
+
+          Container(
+            width: 100,
+            height: 100,
+            child: Center(
+              child: _image == null? Text('No Image'):
+              Image.file(File(_image.path)),
+            ),
+          ),
+          SizedBox(height: 30,),
+          ElevatedButton(
+              onPressed: () {
+                getImageFromCamera();
+              },
+              child: Text('Camera')),
+          ElevatedButton(onPressed: () {}, child: Text('Gallery'))
+        ],
+      ),
     );
   }
 
-  Future<void> _pickImg() async{
-    final List<Asset> images = await MultiImagePicker.pickImages(maxImages: 5);
-
-    log(images.toString());
+  Future getImageFromCamera() async {
+    var image = await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    setState(() {
+      _image = image;
+    });
+  }
+  Future getImageFromGallery() async {
+    var image = await ImagePicker.platform.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = image;
+    });
   }
 }

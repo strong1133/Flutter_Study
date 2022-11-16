@@ -32,18 +32,21 @@ class _HomeState extends State<Home> {
             width: 200,
             child: Column(
               children: [
-                ExpandablePanel(
-                  theme: ExpandableThemeData(
-                      headerAlignment: ExpandablePanelHeaderAlignment.center,
-                      hasIcon: true,
-                      tapBodyToCollapse: true,
-                      tapBodyToExpand: true,
-                      iconPadding: EdgeInsets.fromLTRB(4, 0, 0, 0),
-                      iconSize: 24,
-                      iconColor: Colors.amber),
-                  header: const Text('Header'),
-                  collapsed: const Text(''),
-                  expanded: Container(width: double.maxFinite, height: 100, child: const Text('내용내용내용')),
+                IgnorePointer(
+                  ignoring: true,
+                  child: ExpandablePanel(
+                    theme: ExpandableThemeData(
+                        headerAlignment: ExpandablePanelHeaderAlignment.center,
+                        hasIcon: true,
+                        tapBodyToCollapse: true,
+                        tapBodyToExpand: true,
+                        iconPadding: EdgeInsets.fromLTRB(4, 0, 0, 0),
+                        iconSize: 24,
+                        iconColor: Colors.amber),
+                    header: const Text('Header'),
+                    collapsed: const Text(''),
+                    expanded: Container(width: double.maxFinite, height: 600, child: const Text('내용내용내용')),
+                  ),
                 ),
                 ExpandablePanel(
                   theme: ExpandableThemeData(

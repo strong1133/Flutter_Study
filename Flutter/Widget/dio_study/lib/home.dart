@@ -26,7 +26,9 @@ class Home extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              ElevatedButton(onPressed: () {}, child: Text('401')),
+              ElevatedButton(onPressed: () {
+                homeProvider.getAuthCheck(buildContext: context);
+              }, child: Text('401')),
               SizedBox(
                 height: 20,
               ),

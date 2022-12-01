@@ -1,4 +1,5 @@
 import 'package:chart_test/circle_chart.dart';
+import 'package:chart_test/custom_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -17,15 +18,7 @@ class Home extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            Center(
-              child: CustomPaint(
-                size: Size(150, 150),
-                painter: CircleChart(
-                  textScaleFactor: 1.0,
-                  percentage: 50
-                ),
-              ),
-            )
+           CustomChart(),
           ],
         ),
       ),

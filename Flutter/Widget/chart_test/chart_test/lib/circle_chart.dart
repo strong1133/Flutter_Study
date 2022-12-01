@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 class CircleChart extends CustomPainter {
   int percentage = 0;
   double textScaleFactor = 1.0;
+  double fraction;
 
   CircleChart({
     required this.percentage,
-    required this.textScaleFactor
+    required this.textScaleFactor,
+    required this.fraction,
   });
 
   @override
@@ -17,7 +19,7 @@ class CircleChart extends CustomPainter {
 
     paint
       ..color = Colors.grey // 선의 색상
-      ..strokeWidth = 15.0 // 선의 길이
+      ..strokeWidth = 20.0 // 선의 길이
       ..style = PaintingStyle.stroke // 스타일 :: Stroke:외곽선, fill:다체움
       ..strokeCap = StrokeCap.round; // 끝처리
 
@@ -29,7 +31,7 @@ class CircleChart extends CustomPainter {
     double arcAngle = 2 * pi * (percentage / 100); // 호의 각도를 정함.
     paint.color = Colors.deepPurpleAccent; // 호의 색
 
-    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2, arcAngle, false, paint); // 호를 그리는 부분
+    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2, arcAngle * fraction, false, paint); // 호를 그리는 부분
 
     drawText(canvas, size, "$percentage / 100");
   }
@@ -57,6 +59,6 @@ class CircleChart extends CustomPainter {
 
   @override
   bool shouldRepaint(CircleChart old) {
-    return old.percentage != percentage;
+    return old.fraction != fraction;
   }
 }

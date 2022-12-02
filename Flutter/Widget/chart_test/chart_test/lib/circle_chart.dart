@@ -3,15 +3,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class CircleChart extends CustomPainter {
-  int percentage = 0;
+  List<double> valueList = [];
   double textScaleFactor = 1.0;
   double fraction;
 
   CircleChart({
-    required this.percentage,
+    required this.valueList,
     required this.textScaleFactor,
     required this.fraction,
   });
+
+  List<Color> colorList = [Colors.blue, Colors.amber, Colors.green, Colors.purpleAccent];
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -26,20 +28,38 @@ class CircleChart extends CustomPainter {
     double radius = min(size.width / 2 - paint.strokeWidth / 2, size.height / 2 - paint.strokeWidth / 2); // 원의 반지름을 구함. 선의 굵기에 영향을 받지않게 조정
     Offset center = Offset(size.width / 2, size.height / 2);
 
-    canvas.drawCircle(center, radius, paint); // 원을 그리는 부분
+    valueList.sort(((b, a) => a.compareTo(b))); // 제일 큰 값을 가장 첫번째에 그림
 
-    double arcAngle = 2 * pi * (percentage / 100); // 호의 각도를 정함.
-    paint.color = Colors.deepPurpleAccent; // 호의 색
+    drawCircle(canvas, center, radius, paint); // 원을 그리는 부분
 
-    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2, arcAngle * fraction, false, paint); // 호를 그리는 부분
+    // 전달받은 값의 양만큼 호를 그림
+    for (double e in valueList) {
+      int idx = valueList.indexOf(e);
+      drawArc(canvas, center, radius, colorList[idx], paint, value: e);
+    }
 
-    drawText(canvas, size, "$percentage / 100");
+    drawText(canvas, size, "${valueList.length} / 100"); // 차트 라벨링
   }
 
-  // 원의 중앙에 텍스트를 적음.
+  ///
+  /// 원을 그려주는 함수.
+  void drawCircle(Canvas canvas, Offset center, double radius, Paint paint) {
+    canvas.drawCircle(center, radius, paint); // 원을 그리는 부분
+  }
+
+  ///
+  /// 호를 그려주는 함수
+  void drawArc(Canvas canvas, Offset center, double radius, Color arcColor, Paint paint, {required double value}) {
+    double arcAngle = 2 * pi * (value / 100); // 호의 각도를 정함.
+    paint.color = arcColor; // 호의 색
+
+    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2, arcAngle * fraction, false, paint); // 호를 그리는 부분
+  }
+
+  ///
+  /// 원의 중앙에 텍스트를 적음.
   void drawText(Canvas canvas, Size size, String text) {
     double fontSize = getFontSize(size, text);
-
     TextSpan sp = TextSpan(style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.black), text: text);
 
     TextPainter tp = TextPainter(text: sp, textDirection: TextDirection.ltr);

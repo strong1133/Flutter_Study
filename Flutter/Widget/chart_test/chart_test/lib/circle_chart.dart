@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class CircleChart extends CustomPainter {
-  List<double> valueList = [];
+ List<Map<String, dynamic>> valueList = [];
   double textScaleFactor = 1.0;
   double fraction;
 
@@ -12,8 +12,6 @@ class CircleChart extends CustomPainter {
     required this.textScaleFactor,
     required this.fraction,
   });
-
-  List<Color> colorList = [Colors.blue, Colors.amber, Colors.green, Colors.purpleAccent];
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -28,14 +26,14 @@ class CircleChart extends CustomPainter {
     double radius = min(size.width / 2 - paint.strokeWidth / 2, size.height / 2 - paint.strokeWidth / 2); // 원의 반지름을 구함. 선의 굵기에 영향을 받지않게 조정
     Offset center = Offset(size.width / 2, size.height / 2);
 
-    valueList.sort(((b, a) => a.compareTo(b))); // 제일 큰 값을 가장 첫번째에 그림
+   valueList.sort(((b, a) => a['value'].compareTo(b['value']))); // 제일 큰 값을 가장 첫번째에 그림
 
     drawCircle(canvas, center, radius, paint); // 원을 그리는 부분
 
     // 전달받은 값의 양만큼 호를 그림
-    for (double e in valueList) {
-      int idx = valueList.indexOf(e);
-      drawArc(canvas, center, radius, colorList[idx], paint, value: e);
+    for (Map<String, dynamic> e in valueList) {
+      paint.color = e['color'];
+      drawArc(canvas, center, radius, paint, value: e['value']);
     }
 
     drawText(canvas, size, "${valueList.length} / 100"); // 차트 라벨링
@@ -49,10 +47,8 @@ class CircleChart extends CustomPainter {
 
   ///
   /// 호를 그려주는 함수
-  void drawArc(Canvas canvas, Offset center, double radius, Color arcColor, Paint paint, {required double value}) {
+  void drawArc(Canvas canvas, Offset center, double radius,  Paint paint, {required double value}) {
     double arcAngle = 2 * pi * (value / 100); // 호의 각도를 정함.
-    paint.color = arcColor; // 호의 색
-
     canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2, arcAngle * fraction, false, paint); // 호를 그리는 부분
   }
 

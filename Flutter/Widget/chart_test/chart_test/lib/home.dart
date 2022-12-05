@@ -1,3 +1,4 @@
+import 'package:chart_test/animated_line_chart.dart';
 import 'package:chart_test/circle_chart.dart';
 import 'package:chart_test/animated_circle_chart.dart';
 import 'package:chart_test/line_chart.dart';
@@ -22,10 +23,7 @@ class Home extends StatelessWidget {
             AnimatedCircleChart(),
             SizedBox(height: 50,),
 
-            CustomPaint(
-              size: Size(200, 200),
-              painter:    LineChart(valueList: [20,34], textScaleFactor: 1.0, fraction: 1),
-            )
+            AnimatedLineChart()
          
           ],
         ),

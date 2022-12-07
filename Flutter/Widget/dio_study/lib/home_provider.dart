@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:dio_study/dio_dto.dart';
 import 'package:dio_study/dio_service.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +12,11 @@ class HomeProvider extends ChangeNotifier {
 
   String token = '';
   List<String> users = [];
+
+  void getError() {
+    log("getError");
+    throw Exception(["Custom Exception"]);
+  }
 
   void getUsers({required BuildContext buildContext}) async {
     String apiUrl = '$URI_PREFIX/user';
@@ -35,6 +43,35 @@ class HomeProvider extends ChangeNotifier {
       print(e.runtimeType);
     }
 
-    print(res);
+    print("getAuthCheck :: ${res}");
+  }
+
+  Future<String?> getLogin() async{
+    String apiUrl = '$URI_PREFIX/user/login';
+
+
+    Map<String, dynamic> body = {
+      "id":"strong1133",
+      "password":"tjrwls4555"
+    };
+
+    DioDto dioDto =  await dioService.post(path: apiUrl, body: body);
+    if(dioDto.isError){
+      log("getLogin Error");
+      log(dioDto.dioError!.message.toString());
+      return null;
+    }
+
+    String token = dioDto.getResponse!.data['data']['token'];
+    return token;
+  }
+
+
+  void dioLockTest({required BuildContext buildContext})async {
+    for(int i =0; i < 10; i++){
+      log("Attempt Http Request #$i");
+      getAuthCheck(buildContext: buildContext);
+    }
+    
   }
 }

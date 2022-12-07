@@ -22,7 +22,9 @@ class Home extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              ElevatedButton(onPressed: () {}, child: Text('500')),
+              ElevatedButton(onPressed: () {
+                homeProvider.getError();
+              }, child: Text('Error')),
               SizedBox(
                 height: 20,
               ),
@@ -36,7 +38,23 @@ class Home extends StatelessWidget {
                   onPressed: () {
                     homeProvider.getUsers(buildContext: context);
                   },
-                  child: Text('200'))
+                  child: Text('200')),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    homeProvider.dioLockTest(buildContext: context);
+                  },
+                  child: Text('dio Lock')),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    homeProvider.getLogin();
+                  },
+                  child: Text('Login'))
             ],
           ),
         ));

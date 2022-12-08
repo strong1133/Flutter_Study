@@ -9,6 +9,7 @@ class HomeProvider extends ChangeNotifier {
   DioService dioService = DioService();
 
   String URI_PREFIX = 'http://192.168.10.160:8080';
+  // String URI_PREFIX = 'http://192.168.0.72:8080';
 
   String token = '';
   List<String> users = [];
@@ -32,7 +33,7 @@ class HomeProvider extends ChangeNotifier {
     print(res);
   }
 
-  void getAuthCheck({required BuildContext buildContext}) async {
+  Future<void> getAuthCheck({required BuildContext buildContext}) async {
     String apiUrl = '$URI_PREFIX/user/authCheck';
     Response? res;
 
@@ -68,9 +69,9 @@ class HomeProvider extends ChangeNotifier {
 
 
   void dioLockTest({required BuildContext buildContext})async {
-    for(int i =0; i < 10; i++){
+    for(int i =0; i < 2; i++){
       log("Attempt Http Request #$i");
-      getAuthCheck(buildContext: buildContext);
+       await getAuthCheck(buildContext: buildContext);
     }
     
   }

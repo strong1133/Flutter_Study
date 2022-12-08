@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -8,7 +9,9 @@ class DioService {
   Dio dio = Dio();
 
   DioService() {
-    dio.interceptors.addAll([DioLogInterceptor(dio: dio), DioInterceptor(dio: dio)]);
+    dio.interceptors.addAll([
+      // DioLogInterceptor(dio: dio), 
+      QueuedInterceptor(dio: dio)]);
   }
 
   Future<DioDto> post({required String path, required Map<String, dynamic> body}) async {
@@ -52,67 +55,119 @@ class DioLogInterceptor extends Interceptor {
     );
     super.onError(err, handler);
   }
+
 }
 
-class DioInterceptor extends InterceptorsWrapper {
+class QueuedInterceptor extends QueuedInterceptorsWrapper {
   Dio dio;
-  DioInterceptor({required this.dio});
-
-  String Jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOiI2MzdjZGQ3YTY2OWYzY2QzMzE4MzUzNmEiLCJpZCI6InN0cm9uZzExMzMiLCJuYW1lIjoi7KCV7ISd7KeEIiwiaWF0IjoxNjY5MjQ3MzMxfQ.NGV_B12PqGI7HI1_ZaHEsd';
-
-  @override
-  void onError(DioError err, ErrorInterceptorHandler handler)async {
-    // TODO: implement onError
-    super.onError(err, handler);
-    if(err.response!.statusCode == 403){
-      log("토큰 오류!!!");
-      dio.lock();
-      // String token = await getLogin();
-      Jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOiI2MzdjZGQ3YTY2OWYzY2QzMzE4MzUzNmEiLCJpZCI6InN0cm9uZzExMzMiLCJuYW1lIjoi7KCV7ISd7KeEIiwiaWF0IjoxNjY5MjQ3MzMxfQ.NGV_B12PqGI7HI1_ZaHEsd_VVpt_QDFXanhtk-C9QxU";
-
-      log("토큰 갱신!!! ${Jwt}");
-      dio.unlock();
-      
-    }
-    Fluttertoast.showToast(msg: '${err.response!.data['errMsg']}');
-  }
+  QueuedInterceptor({required this.dio});
+  String Jwt =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOiI2MzdjZGQ3YTY2OWYzY2QzMzE4MzUzNmEiLCJpZCI6InN0cm9uZzExMzMiLCJuYW1lIjoi7KCV7ISd7KeEIiwiaWF0IjoxNjY5MjQ3MzMxfQ.NGV_B12PqGI7HI1_ZaHEsd';
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    log("<<<<<<<< 요청 시직 >>>>>>>>");
     if (options.headers.isEmpty) {
-      options.headers.addAll({
-        'Authorization':
-            Jwt
-      });
+      options.headers.addAll({'Authorization': Jwt});
     }
     print("HEADER ${options.headers}");
 
-    // TODO: implement onRequest
-    super.onRequest(options, handler);
+    handler.next(options);
   }
 
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    // TODO: implement onResponse
-    super.onResponse(response, handler);
+  void onError(DioError err, ErrorInterceptorHandler handler) async{
+    log("ERROR!!");
+    
+    // TODO: implement onError
+    if(err.response!.statusCode == 403){
+      
+      log("토큰 오류!!!");
+      // String token = await getLogin();
+      String newToken =  await getToken(dio);
+      err.requestOptions.headers.clear();
+      err.requestOptions.headers.addAll({'Authorization':newToken });
+      Jwt = newToken;
 
-    print(response);
+      // 실패한 요청 다시 보내는 부분 필요!!
+      
+      log("토큰 갱신 완료");
+    }
+      handler.next(err);
+    // Fluttertoast.showToast(msg: '${err.response!.data['errMsg']}');
+    // super.onError(err, handler);
   }
-  
-   Future<String> getLogin() async{
-    String apiUrl = 'http://192.168.10.160:8080/user/login';
-
-
-    Map<String, dynamic> body = {
-      "id":"strong1133",
-      "password":"tjrwls4555"
-    };
-
-    Response response =  await dio.post(apiUrl, data: body);
- 
-    String token = response.data['data']['token'];
-    return token;
-  }
-
-
 }
+
+Future<String> getToken (Dio dio) async{
+  // Completer completer = Completer();
+  log("토큰 갱신 요청");
+  String Jwt =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOiI2MzdjZGQ3YTY2OWYzY2QzMzE4MzUzNmEiLCJpZCI6InN0cm9uZzExMzMiLCJuYW1lIjoi7KCV7ISd7KeEIiwiaWF0IjoxNjY5MjQ3MzMxfQ.NGV_B12PqGI7HI1_ZaHEsd_VVpt_QDFXanhtk-C9QxU";
+  // dio.options.headers.remove("Authorization");
+  // dio.options.headers.addAll({'Authorization': Jwt});
+  // completer.complete();
+  return Jwt;
+}
+
+// class DioInterceptor extends InterceptorsWrapper {
+//   Dio dio;
+//   DioInterceptor({required this.dio});
+
+//   String Jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOiI2MzdjZGQ3YTY2OWYzY2QzMzE4MzUzNmEiLCJpZCI6InN0cm9uZzExMzMiLCJuYW1lIjoi7KCV7ISd7KeEIiwiaWF0IjoxNjY5MjQ3MzMxfQ.NGV_B12PqGI7HI1_ZaHEsd';
+
+//   @override
+//   void onError(DioError err, ErrorInterceptorHandler handler)async {
+//     // TODO: implement onError
+//     super.onError(err, handler);
+//     if(err.response!.statusCode == 403){
+//       log("토큰 오류!!!");
+//       dio.lock()
+//       // String token = await getLogin();
+//       Jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOiI2MzdjZGQ3YTY2OWYzY2QzMzE4MzUzNmEiLCJpZCI6InN0cm9uZzExMzMiLCJuYW1lIjoi7KCV7ISd7KeEIiwiaWF0IjoxNjY5MjQ3MzMxfQ.NGV_B12PqGI7HI1_ZaHEsd_VVpt_QDFXanhtk-C9QxU";
+
+//       log("토큰 갱신!!! ${Jwt}");
+//       dio.unlock();
+      
+//     }
+//     Fluttertoast.showToast(msg: '${err.response!.data['errMsg']}');
+//   }
+
+//   @override
+//   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+//     if (options.headers.isEmpty) {
+//       options.headers.addAll({
+//         'Authorization':
+//             Jwt
+//       });
+//     }
+//     print("HEADER ${options.headers}");
+
+//     // TODO: implement onRequest
+//     super.onRequest(options, handler);
+//   }
+
+//   @override
+//   void onResponse(Response response, ResponseInterceptorHandler handler) {
+//     // TODO: implement onResponse
+//     super.onResponse(response, handler);
+
+//     print(response);
+//   }
+  
+//    Future<String> getLogin() async{
+//     String apiUrl = 'http://192.168.10.160:8080/user/login';
+
+
+//     Map<String, dynamic> body = {
+//       "id":"strong1133",
+//       "password":"tjrwls4555"
+//     };
+
+//     Response response =  await dio.post(apiUrl, data: body);
+ 
+//     String token = response.data['data']['token'];
+//     return token;
+//   }
+
+
+// }

@@ -54,3 +54,4 @@ class _AnimatedCircleChartState extends State<AnimatedCircleChart> with SingleTi
     ));
   }
 }
+

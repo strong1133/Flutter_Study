@@ -50,38 +50,55 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("APP URL LINK TEST"),),
+      appBar: AppBar(
+        title: Text("APP URL LINK TEST"),
+      ),
       body: Center(
         child: Column(
           children: [
             Text('BODY'),
-
             SizedBox(
               height: 50,
             ),
-
-            ElevatedButton(onPressed: (){makePhone();}, child: Text('Tel')),
-            ElevatedButton(onPressed: (){makeSms();}, child: Text('SMS')),
+            ElevatedButton(
+                onPressed: () {
+                  makePhone();
+                },
+                child: Text('Tel')),
+            ElevatedButton(
+                onPressed: () {
+                  makeSms();
+                },
+                child: Text('SMS')),
+            ElevatedButton(
+                onPressed: () {
+                  makeWeb();
+                },
+                child: Text('Naver')),
           ],
         ),
       ),
     );
   }
 
-  void makePhone() async{
+  void makePhone() async {
     var telUrl = 'tel:01012344567';
-    await canLaunch(telUrl);  
+    await canLaunch(telUrl);
     await launchUrlString(telUrl);
-
   }
 
-  void makeSms() async{
+  void makeSms() async {
     var telUrl = 'sms:01012344567';
-    await canLaunch(telUrl);  
+    await canLaunch(telUrl);
+    await launchUrlString(telUrl);
+  }
+
+  void makeWeb() async {
+    var telUrl = 'https://naver.com';
+    await canLaunch(telUrl);
     await launchUrlString(telUrl);
   }
 }

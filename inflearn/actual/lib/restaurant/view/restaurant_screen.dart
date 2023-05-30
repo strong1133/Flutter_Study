@@ -1,5 +1,6 @@
 import 'package:actual/common/const/data.dart';
 import 'package:actual/restaurant/component/restaurant_card.dart';
+import 'package:actual/restaurant/model/restaurant_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -13,7 +14,7 @@ class RestaurantScreen extends StatelessWidget {
 
     final accessToken = await storage.read(key: ACCESS_TOKEN_KEY);
 
-    final resp =  await dio.get(
+    final resp = await dio.get(
       "http://$ip/restaurant",
       options: Options(
         headers: {
@@ -44,16 +45,20 @@ class RestaurantScreen extends StatelessWidget {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (_, index) {
                     final item = snapshot.data![index];
+                    RestaurantModel pItem = RestaurantModel.fromJson(jsonMap: item);
+
                     return RestaurantCard(
                         image: Image.network(
-                          'http://$ip${item['thumbUrl']}',fit: BoxFit.cover,
+                          'http://$ip${pItem.thumbUrl}',
+                          fit: BoxFit.cover,
                         ),
-                        name: item['name'],
-                        tags: List<String>.from(item['tags']),
-                        ratingCount: item['ratingsCount'],
-                        deliveryTime: item['deliveryTime'],
-                        deliveryFee: item['deliveryFee'],
-                        rating: item['ratings']);
+                        name: pItem.name,
+                        tags:pItem.tags,
+                        
+                        ratingCount: pItem.ratingsConunt,
+                        deliveryTime: pItem.deliveryTime,
+                        deliveryFee: pItem.deliveryFee,
+                        rating: pItem.ratings );
                   },
                   separatorBuilder: (_, index) {
                     return const SizedBox(

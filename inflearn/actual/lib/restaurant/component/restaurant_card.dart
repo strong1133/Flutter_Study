@@ -1,4 +1,6 @@
 import 'package:actual/common/const/colors.dart';
+import 'package:actual/common/const/data.dart';
+import 'package:actual/restaurant/model/restaurant_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -21,6 +23,22 @@ class RestaurantCard extends StatelessWidget {
       required this.deliveryFee,
       required this.rating,
       super.key});
+
+  factory RestaurantCard.fromModel({required RestaurantModel restaurantModel}) {
+    Image thumbImage = Image.network(
+      'http://$ip${restaurantModel.thumbUrl}',
+      fit: BoxFit.cover,
+    );
+    RestaurantCard restaurantCard = RestaurantCard(
+        image: thumbImage,
+        name: restaurantModel.name,
+        tags: restaurantModel.tags,
+        ratingCount: restaurantModel.ratingsConunt,
+        deliveryTime: restaurantModel.deliveryTime,
+        deliveryFee: restaurantModel.deliveryFee,
+        rating: restaurantModel.ratings);
+    return restaurantCard;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +74,9 @@ class RestaurantCard extends StatelessWidget {
                 renderDot(),
                 _IconText(icon: Icons.receipt, label: ratingCount.toString()),
                 renderDot(),
-                _IconText(
-                    icon: Icons.timelapse_outlined, label: '$deliveryTime 분 '),
-                    renderDot(),
-                _IconText(
-                    icon: Icons.monetization_on,
-                    label: deliveryFee == 0 ? '무료' : deliveryFee.toString()),
+                _IconText(icon: Icons.timelapse_outlined, label: '$deliveryTime 분 '),
+                renderDot(),
+                _IconText(icon: Icons.monetization_on, label: deliveryFee == 0 ? '무료' : deliveryFee.toString()),
               ],
             )
           ],

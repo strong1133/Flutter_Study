@@ -1,10 +1,22 @@
 import 'package:actual/common/const/colors.dart';
+import 'package:actual/common/const/data.dart';
+import 'package:actual/product/model/product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  final String id;
+  final String name;
+  final String imgUrl;
+  final String detail;
+  final int price;
+
+  const ProductCard({super.key, required this.id, required this.name, required this.imgUrl, required this.detail, required this.price});
+
+  factory ProductCard.fromModel({required ProductModel productModel}) {
+    ProductCard productCard =
+        ProductCard(id: productModel.id, name: productModel.name, imgUrl: productModel.imgUrl, detail: productModel.detail, price: productModel.price);
+    return productCard;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +25,8 @@ class ProductCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
-            child: Image.asset(
-              "asset/img/food/ddeok_bok_gi.jpg",
+            child: Image.network(
+              'http://$ip$imgUrl',
               width: 110,
               height: 110,
               fit: BoxFit.cover,
@@ -27,18 +39,24 @@ class ProductCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
-                  '떡볶이',
-                  style: TextStyle(fontSize: 18.0),
+                  name,
+                  style: const TextStyle(fontSize: 18.0),
                 ),
                 Text(
-                  '전통 떡볶이의 정석!\n맛있습니다.',
+                  detail,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(color: BODY_TEXT_COLOR, fontSize: 14.0, fontWeight: FontWeight.w500),
                 ),
-                Text('10,000', textAlign: TextAlign.right, style: TextStyle(color: PRIMARY_COLOR, fontSize: 14.0, fontWeight: FontWeight.w500,)),
+                Text(price.toString(),
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      color: PRIMARY_COLOR,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w500,
+                    )),
               ],
             ),
           ),

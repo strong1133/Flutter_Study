@@ -1,9 +1,8 @@
 import 'package:actual/common/const/colors.dart';
 import 'package:actual/common/const/data.dart';
+import 'package:actual/restaurant/model/restaurant_detial_model.dart';
 import 'package:actual/restaurant/model/restaurant_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class RestaurantCard extends StatelessWidget {
   final Widget image;
@@ -29,7 +28,10 @@ class RestaurantCard extends StatelessWidget {
       this.detail,
       super.key});
 
-  factory RestaurantCard.fromModel({required RestaurantModel restaurantModel, bool isDetail = false,}) {
+  factory RestaurantCard.fromModel({
+    required RestaurantModel restaurantModel,
+    bool isDetail = false,
+  }) {
     Image thumbImage = Image.network(
       'http://$ip${restaurantModel.thumbUrl}',
       fit: BoxFit.cover,
@@ -43,6 +45,7 @@ class RestaurantCard extends StatelessWidget {
       deliveryFee: restaurantModel.deliveryFee,
       rating: restaurantModel.ratings,
       isDetail: isDetail,
+      detail: restaurantModel is RestaurantDetailModel? restaurantModel.detail :null,
     );
     return restaurantCard;
   }
@@ -51,12 +54,13 @@ class RestaurantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (isDetail) image,
-        if (!isDetail)
+        if (isDetail) ...[image],
+        if (!isDetail) ...[
           ClipRRect(
             child: image,
             borderRadius: BorderRadius.circular(10),
           ),
+        ],
         const SizedBox(
           height: 16.0,
         ),
@@ -90,7 +94,13 @@ class RestaurantCard extends StatelessWidget {
                   _IconText(icon: Icons.monetization_on, label: deliveryFee == 0 ? '무료' : deliveryFee.toString()),
                 ],
               ),
+                const SizedBox(
+                height: 16.0,
+              ),
               if (detail != null && isDetail) Text(detail!),
+                      const SizedBox(
+                height: 16.0,
+              ),
             ],
           ),
         ),

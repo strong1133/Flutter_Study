@@ -1,8 +1,7 @@
 import 'package:actual/common/view/splash_screen.dart';
-import 'package:actual/user/view/login_screen.dart';
+
 import 'package:flutter/material.dart';
 
-import 'common/component/custom_text_form_field.dart';
 
 void main() {
   runApp(_App());

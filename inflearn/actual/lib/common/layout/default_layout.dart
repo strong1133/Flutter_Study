@@ -31,7 +31,7 @@ class DefaultLayout extends StatelessWidget {
       return null;
     } else {
       return AppBar(
-        automaticallyImplyLeading:false,
+        // automaticallyImplyLeading:false,
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(title!,

@@ -40,7 +40,7 @@ class RestaurantCard extends StatelessWidget {
       image: thumbImage,
       name: restaurantModel.name,
       tags: restaurantModel.tags,
-      ratingCount: restaurantModel.ratingsConunt,
+      ratingCount: restaurantModel.ratingsCount,
       deliveryTime: restaurantModel.deliveryTime,
       deliveryFee: restaurantModel.deliveryFee,
       rating: restaurantModel.ratings,

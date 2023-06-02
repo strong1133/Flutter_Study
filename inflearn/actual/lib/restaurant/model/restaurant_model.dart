@@ -12,7 +12,7 @@ class RestaurantModel {
   final List<String> tags;
   final RestaurantPriceRange priceRange;
   final double ratings;
-  final int ratingsConunt;
+  final int ratingsCount;
   final int deliveryTime;
   final int deliveryFee;
 
@@ -23,7 +23,7 @@ class RestaurantModel {
     required this.tags,
     required this.priceRange,
     required this.ratings,
-    required this.ratingsConunt,
+    required this.ratingsCount,
     required this.deliveryTime,
     required this.deliveryFee,
   });

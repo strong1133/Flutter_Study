@@ -14,7 +14,7 @@ class RestaurantDetailModel extends RestaurantModel {
     required super.tags,
     required super.priceRange,
     required super.ratings,
-    required super.ratingsConunt,
+    required super.ratingsCount,
     required super.deliveryTime,
     required super.deliveryFee,
   });
@@ -36,7 +36,7 @@ class RestaurantDetailModel extends RestaurantModel {
         tags: List<String>.from(jsonMap['tags']),
         priceRange: RestaurantPriceRange.values.byName(jsonMap['priceRange']),
         ratings: jsonMap['ratings'],
-        ratingsConunt: jsonMap['ratingsCount'],
+        ratingsCount: jsonMap['ratingsCount'],
         deliveryTime: jsonMap['deliveryTime'],
         deliveryFee: jsonMap['deliveryFee']);
 

@@ -24,7 +24,8 @@ class CustomInterceptor extends Interceptor {
   // 2) 응답을 받을떄
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    super.onResponse(response, handler);
+    print("[RES] :: [${response.requestOptions.method}] ${response.statusCode} >> ${response.requestOptions.uri}");
+    return super.onResponse(response, handler);
   }
 
   // 3) 에러가 났을때

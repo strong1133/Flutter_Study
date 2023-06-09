@@ -6,6 +6,7 @@ import 'package:actual/product/model/product_model.dart';
 import 'package:actual/restaurant/component/restaurant_card.dart';
 import 'package:actual/restaurant/model/restaurant_detial_model.dart';
 import 'package:actual/restaurant/model/restaurant_model.dart';
+import 'package:actual/restaurant/repository/restaurant_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -14,41 +15,42 @@ class RestaurantDetailScreen extends StatelessWidget {
 
   const RestaurantDetailScreen({required this.restaurantModel, super.key});
 
-  Future<Map<String, dynamic>> getRestaurantDetail() async {
-    final dio = Dio();
+  Future<RestaurantDetailModel> getRestaurantDetail() async {
+    final dio = Dio(); 
 
     dio.interceptors.add(
       CustomInterceptor(storage: storage),
     );
 
-    final accessToken = await storage.read(key: ACCESS_TOKEN_KEY);
 
-    final resp = await dio.get(
-      "http://$ip/restaurant/${restaurantModel.id}",
-      options: Options(
-        headers: {
-          "authorization": "Bearer $accessToken",
-        },
-      ),
-    );
+    RestaurantDetailModel resp = await RestaurnatRepository(dio, baseUrl: "http://$ip/restaurant").getRestaurantDetail(id: restaurantModel.id);
 
-    return resp.data;
+    // final resp = await dio.get(
+    //   "http://$ip/restaurant/${restaurantModel.id}",
+    //   options: Options(
+    //     headers: {
+    //       "authorization": "Bearer $accessToken",
+    //     },
+    //   ),
+    // );
+
+    return resp;
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
         title: restaurantModel.name,
-        child: FutureBuilder<Map<String, dynamic>>(
+        child: FutureBuilder<RestaurantDetailModel>(
           future: getRestaurantDetail(),
-          builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
+          builder: (context, AsyncSnapshot<RestaurantDetailModel> snapshot) {
             if (!snapshot.hasData) {
               return Center(
                 child: CircularProgressIndicator(),
               );
             }
 
-            RestaurantDetailModel restaurantDetailModel = RestaurantDetailModel.fromJson(jsonMap: snapshot.data!);
+            RestaurantDetailModel restaurantDetailModel = snapshot.data!;
 
             return CustomScrollView(
               slivers: [

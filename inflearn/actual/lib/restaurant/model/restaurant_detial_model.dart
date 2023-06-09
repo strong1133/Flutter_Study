@@ -19,7 +19,7 @@ class RestaurantDetailModel extends RestaurantModel {
     required super.deliveryFee,
   });
 
-  factory RestaurantDetailModel.fromJson({required Map<String, dynamic> jsonMap}) {
+  factory RestaurantDetailModel.fromJson(Map<String, dynamic> jsonMap) {
     List<ProductModel> productList = [];
 
     for (Map<String, dynamic> element in jsonMap['products']) {
@@ -42,4 +42,7 @@ class RestaurantDetailModel extends RestaurantModel {
 
     return restaurantDetailModel;
   }
+
+  
+  
 }

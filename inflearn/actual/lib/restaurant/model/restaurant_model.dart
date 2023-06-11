@@ -28,7 +28,7 @@ class RestaurantModel {
     required this.deliveryFee,
   });
 
-  factory RestaurantModel.fromJson({required Map<String, dynamic> jsonMap}) => _$RestaurantModelFromJson(jsonMap);
+  factory RestaurantModel.fromJson( Map<String, dynamic> jsonMap) => _$RestaurantModelFromJson(jsonMap);
 
   Map<String, dynamic> toJson() => _$RestaurantModelToJson(this); 
 

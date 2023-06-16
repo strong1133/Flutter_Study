@@ -11,7 +11,7 @@ class StateNotifierScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    log("BUILD");
+    log("StateNotifierScreen BUILD");
     final List<ShoppingItemModel> state = ref.watch(shoppingListProvider);
     return DefaultLayout(
         title: 'StateNotifierProvider',

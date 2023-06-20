@@ -9,40 +9,19 @@ import 'package:actual/restaurant/model/restaurant_model.dart';
 import 'package:actual/restaurant/repository/restaurant_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RestaurantDetailScreen extends StatelessWidget {
+class RestaurantDetailScreen extends ConsumerWidget {
   final RestaurantModel restaurantModel;
 
   const RestaurantDetailScreen({required this.restaurantModel, super.key});
 
-  Future<RestaurantDetailModel> getRestaurantDetail() async {
-    final dio = Dio(); 
-
-    dio.interceptors.add(
-      CustomInterceptor(storage: storage),
-    );
-
-
-    RestaurantDetailModel resp = await RestaurnatRepository(dio, baseUrl: "http://$ip/restaurant").getRestaurantDetail(id: restaurantModel.id);
-
-    // final resp = await dio.get(
-    //   "http://$ip/restaurant/${restaurantModel.id}",
-    //   options: Options(
-    //     headers: {
-    //       "authorization": "Bearer $accessToken",
-    //     },
-    //   ),
-    // );
-
-    return resp;
-  }
- 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayout(
         title: restaurantModel.name,
         child: FutureBuilder<RestaurantDetailModel>(
-          future: getRestaurantDetail(),
+          future:  ref.watch(restaurantRepositoryProvider).getRestaurantDetail(id: restaurantModel.id),
           builder: (context, AsyncSnapshot<RestaurantDetailModel> snapshot) {
             if (!snapshot.hasData) {
               return Center(
@@ -76,7 +55,7 @@ class RestaurantDetailScreen extends StatelessWidget {
     );
   }
 
-  SliverPadding renderProduct({required List<ProductModel> productList }) {
+  SliverPadding renderProduct({required List<ProductModel> productList}) {
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       sliver: SliverList(

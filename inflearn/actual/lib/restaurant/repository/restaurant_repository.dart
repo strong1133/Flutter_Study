@@ -1,6 +1,7 @@
 import 'package:actual/common/const/data.dart';
 import 'package:actual/common/dio/dio.dart';
 import 'package:actual/common/model/cursor_pagination_model.dart';
+import 'package:actual/common/model/pagination_params.dart';
 import 'package:actual/restaurant/model/restaurant_detial_model.dart';
 import 'package:actual/restaurant/model/restaurant_model.dart';
 import 'package:dio/dio.dart';
@@ -20,7 +21,9 @@ abstract class RestaurantRepository {
   factory RestaurantRepository(Dio dio, {required String baseUrl}) = _RestaurantRepository;
 
   @GET("/")
-  Future<CursorPaginationModel<RestaurantModel>> paginate();
+  Future<CursorPaginationModel<RestaurantModel>> paginate({
+    @Queries() PaginationParams? paginationParams = const PaginationParams(),
+  });
 
   @GET("/{id}")
   Future<RestaurantDetailModel> getRestaurantDetail({@Path('id') required String id});
